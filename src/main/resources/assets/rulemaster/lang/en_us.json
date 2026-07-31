@@ -1,0 +1,13 @@
+{
+  "itemGroup.rulemaster": "Example Mod Tab",
+  "block.rulemaster.example_block": "Example Block",
+  "item.rulemaster.example_item": "Example Item",
+
+  "rulemaster.configuration.title": "RuleMaster Configs",
+  "rulemaster.configuration.section.rulemaster.common.toml": "RuleMaster Configs",
+  "rulemaster.configuration.section.rulemaster.common.toml.title": "RuleMaster Configs",
+  "rulemaster.configuration.items": "Item List",
+  "rulemaster.configuration.logDirtBlock": "Log Dirt Block",
+  "rulemaster.configuration.magicNumberIntroduction": "Magic Number Text",
+  "rulemaster.configuration.magicNumber": "Magic Number"
+}
