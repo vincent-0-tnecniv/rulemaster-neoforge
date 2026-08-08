@@ -1,0 +1,39 @@
+package net.vincent.rulemaster.item;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.vincent.rulemaster.RuleMaster;
+import net.vincent.rulemaster.item.custom.BloodPiercerItem;
+import net.vincent.rulemaster.item.custom.FleshBlockTestItem;
+
+public class ModItems {
+    public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(RuleMaster.MOD_ID);
+
+    public static DeferredItem<Item> BLOOD_CRYSTAL = ITEMS.registerItem("blood_crystal",
+            Item::new);
+
+    public static DeferredItem<Item> BLOOD_PIERCER = ITEMS.registerItem("blood_piercer",
+            BloodPiercerItem::new);
+
+    public static DeferredItem<Item> BLOOD_CRYSTAL_STAFF = ITEMS.registerItem("blood_crystal_staff",
+            Item::new);
+
+    public static DeferredItem<Item> FLESH_BLOCK_TEST_ITEM = ITEMS.registerItem("flesh_block_test_item",
+            FleshBlockTestItem::new);
+
+    public static ResourceKey<Item> getRK(Item item) {
+        return BuiltInRegistries.ITEM.getResourceKey(item).get();
+    }
+
+    public static ResourceKey<Item> getRK(DeferredItem<Item> item) {
+        return getRK(item.get());
+    }
+
+    public static void register(IEventBus bus) {
+        ITEMS.register(bus);
+    }
+}

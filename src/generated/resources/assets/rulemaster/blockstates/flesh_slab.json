@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rulemaster:block/flesh_slab"
+    },
+    "type=double": {
+      "model": "rulemaster:block/flesh_block"
+    },
+    "type=top": {
+      "model": "rulemaster:block/flesh_slab_top"
+    }
+  }
+}

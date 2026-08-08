@@ -1,0 +1,25 @@
+{
+  "hand_animation_on_swap": false,
+  "model": {
+    "type": "minecraft:condition",
+    "component": "rulemaster:low_health",
+    "on_false": {
+      "type": "minecraft:condition",
+      "component": "rulemaster:half_health",
+      "on_false": {
+        "type": "minecraft:model",
+        "model": "rulemaster:item/blood_piercer"
+      },
+      "on_true": {
+        "type": "minecraft:model",
+        "model": "rulemaster:item/blood_piercer_half_health"
+      },
+      "property": "minecraft:has_component"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "rulemaster:item/blood_piercer_low_health"
+    },
+    "property": "minecraft:has_component"
+  }
+}

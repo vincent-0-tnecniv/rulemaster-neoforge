@@ -1,0 +1,112 @@
+{
+  "variants": {
+    "toc=0": {
+      "model": "rulemaster:block/flesh_block"
+    },
+    "toc=1": {
+      "model": "rulemaster:block/flesh_block_1"
+    },
+    "toc=10": {
+      "model": "rulemaster:block/flesh_block_10"
+    },
+    "toc=11": {
+      "model": "rulemaster:block/flesh_block_11"
+    },
+    "toc=12": {
+      "model": "rulemaster:block/flesh_block_12"
+    },
+    "toc=13": {
+      "model": "rulemaster:block/flesh_block_13"
+    },
+    "toc=14": {
+      "model": "rulemaster:block/flesh_block_14"
+    },
+    "toc=15": {
+      "model": "rulemaster:block/flesh_block_15"
+    },
+    "toc=16": {
+      "model": "rulemaster:block/flesh_block_16"
+    },
+    "toc=17": {
+      "model": "rulemaster:block/flesh_block_17"
+    },
+    "toc=18": {
+      "model": "rulemaster:block/flesh_block_18"
+    },
+    "toc=19": {
+      "model": "rulemaster:block/flesh_block_19"
+    },
+    "toc=2": {
+      "model": "rulemaster:block/flesh_block_2"
+    },
+    "toc=20": {
+      "model": "rulemaster:block/flesh_block_20"
+    },
+    "toc=21": {
+      "model": "rulemaster:block/flesh_block_21"
+    },
+    "toc=22": {
+      "model": "rulemaster:block/flesh_block_22"
+    },
+    "toc=23": {
+      "model": "rulemaster:block/flesh_block_23"
+    },
+    "toc=24": {
+      "model": "rulemaster:block/flesh_block_24"
+    },
+    "toc=25": {
+      "model": "rulemaster:block/flesh_block_25"
+    },
+    "toc=26": {
+      "model": "rulemaster:block/flesh_block_26"
+    },
+    "toc=27": {
+      "model": "rulemaster:block/flesh_block_27"
+    },
+    "toc=28": {
+      "model": "rulemaster:block/flesh_block_28"
+    },
+    "toc=29": {
+      "model": "rulemaster:block/flesh_block_29"
+    },
+    "toc=3": {
+      "model": "rulemaster:block/flesh_block_3"
+    },
+    "toc=30": {
+      "model": "rulemaster:block/flesh_block_30"
+    },
+    "toc=31": {
+      "model": "rulemaster:block/flesh_block_31"
+    },
+    "toc=32": {
+      "model": "rulemaster:block/flesh_block_32"
+    },
+    "toc=33": {
+      "model": "rulemaster:block/flesh_block_33"
+    },
+    "toc=34": {
+      "model": "rulemaster:block/flesh_block_34"
+    },
+    "toc=35": {
+      "model": "rulemaster:block/flesh_block_35"
+    },
+    "toc=4": {
+      "model": "rulemaster:block/flesh_block_4"
+    },
+    "toc=5": {
+      "model": "rulemaster:block/flesh_block_5"
+    },
+    "toc=6": {
+      "model": "rulemaster:block/flesh_block_6"
+    },
+    "toc=7": {
+      "model": "rulemaster:block/flesh_block_7"
+    },
+    "toc=8": {
+      "model": "rulemaster:block/flesh_block_8"
+    },
+    "toc=9": {
+      "model": "rulemaster:block/flesh_block_9"
+    }
+  }
+}

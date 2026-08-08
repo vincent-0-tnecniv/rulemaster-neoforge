@@ -1,13 +1,29 @@
 {
-  "itemGroup.rulemaster": "Example Mod Tab",
-  "block.rulemaster.example_block": "Example Block",
-  "item.rulemaster.example_item": "Example Item",
+  "item.rulemaster.blood_crystal": "Blood Crystal",
+  "item.rulemaster.blood_piercer": "§6Blood Piercer§r",
+  "item.rulemaster.blood_crystal_staff": "§6Blood Crystal Staff§r",
+  "item.rulemaster.flesh_block_test_item": "Flesh Block Test Item",
 
-  "rulemaster.configuration.title": "RuleMaster Configs",
-  "rulemaster.configuration.section.rulemaster.common.toml": "RuleMaster Configs",
-  "rulemaster.configuration.section.rulemaster.common.toml.title": "RuleMaster Configs",
-  "rulemaster.configuration.items": "Item List",
-  "rulemaster.configuration.logDirtBlock": "Log Dirt Block",
-  "rulemaster.configuration.magicNumberIntroduction": "Magic Number Text",
-  "rulemaster.configuration.magicNumber": "Magic Number"
+  "effect.rulemaster.stealth": "Stealth",
+  "effect.rulemaster.stun": "Stunned",
+  "effect.rulemaster.stealth.description": "You are very sneaky!",
+  "effect.rulemaster.stun.description": "Makes entities unresponsive.",
+
+  "death.attack.bleeding": "%s bled too much",
+  "death.attack.bleeding.player": "%s has their blood drunk by %s",
+
+  "creativetab.rulemaster.items": "Rule Master",
+
+  "block.rulemaster.blood_crystal_block": "Blood Crystal Block",
+  "block.rulemaster.flesh_block": "Flesh Block",
+  "block.rulemaster.flesh_slab": "Flesh Slab",
+
+  "tag.item.rulemaster.blood_crystal_repairables": "Blood Crystal Repairables",
+
+  "advancements.rulemaster.assign_type.title": "Sun and Moon",
+  "advancements.rulemaster.assign_type.description": "Be either a Solar or a Lunar player. Discover the effects of them on you!",
+
+  "message.rulemaster.assign_player_type.lunar": "You have been assigned with the player type: Lunar!",
+  "message.rulemaster.assign_player_type.solar": "You have been assigned with the player type: Solar!",
+  "message.rulemaster.assign_player_type.warn": "Effects may come after a few days..."
 }

@@ -10,6 +10,12 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.vincent.rulemaster.attachments.ModAttachments;
+import net.vincent.rulemaster.block.ModBlocks;
+import net.vincent.rulemaster.data.ModDataComponents;
+import net.vincent.rulemaster.effect.ModEffects;
+import net.vincent.rulemaster.item.ModCreativeTabs;
+import net.vincent.rulemaster.item.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -22,6 +28,8 @@ public class RuleMaster {
     public RuleMaster(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
+        RuleMaster.registerFunctionalities(modEventBus);
+
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (RuleMaster) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -32,6 +40,16 @@ public class RuleMaster {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
+
+    public static void registerFunctionalities(IEventBus modEventBus) {
+        // Mark functionalities that need registries (e.g. blocks, items) here
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModDataComponents.register(modEventBus);
+        ModEffects.register(modEventBus);
+        ModCreativeTabs.register(modEventBus);
+        ModAttachments.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {}
