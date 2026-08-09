@@ -9,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.item.custom.BloodPiercerItem;
 import net.vincent.rulemaster.item.custom.FleshBlockTestItem;
+import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
 
 public class ModItems {
     public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(RuleMaster.MOD_ID);
@@ -24,6 +25,9 @@ public class ModItems {
 
     public static DeferredItem<Item> FLESH_BLOCK_TEST_ITEM = ITEMS.registerItem("flesh_block_test_item",
             FleshBlockTestItem::new);
+
+    public static DeferredItem<Item> LIVO_GUIDE_BOOK_ITEM = ITEMS.registerItem("livo_guide_book_item",
+            LivoGuideBookItem::new);
 
     public static ResourceKey<Item> getRK(Item item) {
         return BuiltInRegistries.ITEM.getResourceKey(item).get();

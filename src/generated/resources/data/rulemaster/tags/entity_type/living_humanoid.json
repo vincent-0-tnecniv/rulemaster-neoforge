@@ -4,6 +4,10 @@
     "minecraft:wandering_trader",
     "minecraft:piglin",
     "minecraft:piglin_brute",
-    "minecraft:player"
+    "minecraft:player",
+    "minecraft:pillager",
+    "minecraft:vindicator",
+    "minecraft:evoker",
+    "#rulemaster:blood_infused_humanoid"
   ]
 }

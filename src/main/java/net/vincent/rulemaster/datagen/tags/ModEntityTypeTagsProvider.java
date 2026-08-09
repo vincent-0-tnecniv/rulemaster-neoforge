@@ -20,20 +20,25 @@ public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        tag(ModTags.EntityTypes.BLOOD_INFUSED_HUMANOID)
+                .add(getRK(EntityTypes.WITCH));
         tag(ModTags.EntityTypes.LIVING_HUMANOID)
                 .add(getRK(EntityTypes.VILLAGER))
                 .add(getRK(EntityTypes.WANDERING_TRADER))
                 .add(getRK(EntityTypes.PIGLIN))
                 .add(getRK(EntityTypes.PIGLIN_BRUTE))
-                .add(getRK(EntityTypes.PLAYER));
+                .add(getRK(EntityTypes.PLAYER))
+                .add(getRK(EntityTypes.PILLAGER))
+                .add(getRK(EntityTypes.VINDICATOR))
+                .add(getRK(EntityTypes.EVOKER))
+                .addTag(ModTags.EntityTypes.BLOOD_INFUSED_HUMANOID);
         tag(ModTags.EntityTypes.HUMANOID)
-                .addTag(ModTags.EntityTypes.LIVING_HUMANOID)
                 .add(getRK(EntityTypes.ZOMBIE))
                 .add(getRK(EntityTypes.ZOMBIE_VILLAGER))
                 .add(getRK(EntityTypes.DROWNED))
                 .add(getRK(EntityTypes.HUSK))
                 .add(getRK(EntityTypes.ZOMBIFIED_PIGLIN))
-                .add(getRK(EntityTypes.WITCH));
+                .addTag(ModTags.EntityTypes.LIVING_HUMANOID);
     }
 
     protected ResourceKey<EntityType<?>> getRK(EntityType<?> entityType){

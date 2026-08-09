@@ -34,7 +34,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void setPlayerAttachments(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
-        registerAttachment(ModAttachments.MARK_OF_CRYSTAL, 0, player);
+        register(ModAttachments.MARK_OF_CRYSTAL, 0, player);
         if(!player.hasData(ModAttachments.IS_LUNAR)) {
             randomAssign(ModAttachments.IS_LUNAR, player);
             if(isLunar(player)){
@@ -45,7 +45,7 @@ public class ModEvents {
                 player.sendSystemMessage(Component.translatable("message.rulemaster.assign_player_type.warn"));
             }
         }
-        registerAttachment(ModAttachments.PLAYER_JOINED, true, player);
+        register(ModAttachments.PLAYER_JOINED, true, player);
     }
 
     private static boolean isLunar(Player player) {
@@ -80,7 +80,7 @@ public class ModEvents {
     public static void setMobAttachments(FinalizeSpawnEvent event) {
         Mob spawnedMob = event.getEntity();
         if(spawnedMob.is(ModTags.EntityTypes.LIVING_HUMANOID)){
-            registerAttachment(ModAttachments.MARK_OF_CRYSTAL, 0, spawnedMob);
+            register(ModAttachments.MARK_OF_CRYSTAL, 0, spawnedMob);
             randomAssign(ModAttachments.IS_LUNAR, spawnedMob);
         }
     }
@@ -97,12 +97,21 @@ public class ModEvents {
         }
     }
 
-    private static <T, U extends Entity> void registerAttachment(Supplier<AttachmentType<T>> attachment, T defaultValue, U entity) {
+    private static <T, U extends Entity> void register(Supplier<AttachmentType<T>> attachment, T defaultValue, U entity) {
+        /**
+         * Registers the attachment of a given entity, or update if it already has one.
+         *
+         */
+
         if(entity.hasData(attachment)){
-            entity.setData(attachment, entity.getData(attachment));
+            passOn(attachment, entity);
         } else{
-            entity.setData(attachment, defaultValue);
+            set(attachment, defaultValue, entity);
         }
+    }
+
+    private static <T, U extends Entity> void set(Supplier<AttachmentType<T>> attachment, T value, U entity) {
+        entity.setData(attachment, value);
     }
 
     private static <T, U extends Entity> void passOn(Supplier<AttachmentType<T>> attachment, U entity) {

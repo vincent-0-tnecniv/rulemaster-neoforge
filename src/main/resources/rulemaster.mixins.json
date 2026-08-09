@@ -1,8 +1,9 @@
 {
   "required": true,
-  "package": "com.vincent.rulemaster.mixin",
+  "package": "net.vincent.rulemaster.mixin",
   "compatibilityLevel": "JAVA_25",
-  "mixins": [],
+  "mixins": [
+  ],
   "injectors": {
     "defaultRequire": 1
   },

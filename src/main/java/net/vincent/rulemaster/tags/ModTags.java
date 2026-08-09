@@ -10,6 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.Block;
 import net.vincent.rulemaster.RuleMaster;
 
@@ -36,9 +37,17 @@ public class ModTags {
 
         public static TagKey<EntityType<?>> HUMANOID = createTag("humanoid");
         public static TagKey<EntityType<?>> LIVING_HUMANOID = createTag("living_humanoid");
+        public static TagKey<EntityType<?>> BLOOD_INFUSED_HUMANOID = createTag("blood_infused_humanoid");
 
         public static TagKey<EntityType<?>> createTag(String name){
             return TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, name));
+        }
+    }
+
+    public static class Trades {
+
+        public static TagKey<VillagerTrade> createTag(String name){
+            return TagKey.create(Registries.VILLAGER_TRADE, Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, name));
         }
     }
 }

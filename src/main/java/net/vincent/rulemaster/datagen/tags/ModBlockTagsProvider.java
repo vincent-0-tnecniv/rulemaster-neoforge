@@ -1,5 +1,6 @@
 package net.vincent.rulemaster.datagen.tags;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
@@ -23,6 +24,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         // adding to non-block block sets is not STRICTLY necessary
         // however, still good to add as convention so that other mods, if needed,
         //  support the use of the non-block blocks
+
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ModBlocks.getRK(ModBlocks.BLOOD_CRYSTAL_BLOCK.get()));
+
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlocks.getRK(ModBlocks.BLOOD_CRYSTAL_BLOCK.get()));
+
         tag(BlockTags.SLABS)
                 .add(ModBlocks.getRK(ModBlocks.FLESH_SLAB));
 
