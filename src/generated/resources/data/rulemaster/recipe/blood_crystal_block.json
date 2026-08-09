@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "blood_crystal",
+  "key": {
+    "X": "rulemaster:blood_crystal"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "id": "rulemaster:blood_crystal_block"
+  }
+}

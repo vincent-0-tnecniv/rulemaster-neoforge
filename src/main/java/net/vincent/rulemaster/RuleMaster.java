@@ -16,6 +16,7 @@ import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.effect.ModEffects;
 import net.vincent.rulemaster.item.ModCreativeTabs;
 import net.vincent.rulemaster.item.ModItems;
+import net.vincent.rulemaster.loot.ModLootModifiers;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -50,6 +51,7 @@ public class RuleMaster {
         ModEffects.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModAttachments.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {}

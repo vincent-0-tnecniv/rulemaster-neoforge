@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "blood_crystal",
+  "ingredients": [
+    "rulemaster:blood_crystal_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "rulemaster:blood_crystal"
+  }
+}

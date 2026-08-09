@@ -8,9 +8,11 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.vincent.rulemaster.datagen.ModBlockLootTableProvider;
+import net.vincent.rulemaster.datagen.loot.ModBlockLootTableProvider;
 import net.vincent.rulemaster.datagen.ModModelProvider;
+import net.vincent.rulemaster.datagen.ModRecipeProvider;
 import net.vincent.rulemaster.datagen.datapack.ModDataPackProvider;
+import net.vincent.rulemaster.datagen.loot.ModGlobalLootModifierProvider;
 import net.vincent.rulemaster.datagen.tags.ModBlockTagsProvider;
 import net.vincent.rulemaster.datagen.tags.ModDamageTypeTagsProvider;
 import net.vincent.rulemaster.datagen.tags.ModEntityTypeTagsProvider;
@@ -40,5 +42,7 @@ public class RuleMasterDataGen {
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
         generator.addProvider(true, new ModPOITags(packOutput, lookupProvider));
         generator.addProvider(true, new ModVillagerTradeTags(packOutput, lookupProvider));
+        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
+        generator.addProvider(true, new ModGlobalLootModifierProvider(packOutput, lookupProvider));
     }
 }

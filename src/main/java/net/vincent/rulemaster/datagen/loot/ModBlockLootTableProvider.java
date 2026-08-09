@@ -1,4 +1,4 @@
-package net.vincent.rulemaster.datagen;
+package net.vincent.rulemaster.datagen.loot;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;

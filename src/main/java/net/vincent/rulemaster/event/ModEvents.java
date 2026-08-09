@@ -2,11 +2,14 @@ package net.vincent.rulemaster.event;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -17,6 +20,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.attachments.ModAttachments;
 import net.vincent.rulemaster.command.ModCommands;
+import net.vincent.rulemaster.item.ModItems;
+import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
 import net.vincent.rulemaster.tags.ModTags;
 
 import java.util.List;
@@ -29,6 +34,17 @@ public class ModEvents {
     public static void registerModCommands(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
         ModCommands.registerCommands(dispatcher);
+    }
+
+    @SubscribeEvent
+    public static void updateBookContent(PlayerEvent.PlayerLoggedInEvent event) {
+        Player player = event.getEntity();
+        Item book = ModItems.LIVO_GUIDE_BOOK.get();
+        for(ItemStack item : player.getInventory()){
+            if(item.getItem() == book){
+                LivoGuideBookItem.updatedBook(item);
+            }
+        }
     }
 
     @SubscribeEvent

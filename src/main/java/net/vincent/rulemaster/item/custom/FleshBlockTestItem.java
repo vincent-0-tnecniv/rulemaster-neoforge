@@ -60,6 +60,9 @@ public class FleshBlockTestItem extends Item {
     public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
         builder.accept(Component.literal("Click to test phase 1 changes (from 0 to 28)"));
         builder.accept(Component.literal("Sneak click to test phase 2 changes (from 0 to 35)"));
+        builder.accept(Component.literal(""));
+        builder.accept(Component.literal("If you cannot see a texture - don't worry, you're fine."));
+        builder.accept(Component.literal("This is a test item, no texture is given to it."));
         super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
     }
 }

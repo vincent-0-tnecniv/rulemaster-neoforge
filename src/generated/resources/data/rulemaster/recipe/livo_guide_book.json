@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "rulemaster:blood_crystal",
+    "minecraft:book"
+  ],
+  "result": {
+    "id": "rulemaster:livo_guide_book"
+  }
+}
