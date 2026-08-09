@@ -20,5 +20,7 @@ public class ModVillagerTradeTags extends VillagerTradesTagsProvider {
                 .add(TagEntry.element(ModVillagerTrades.CLERIC_1_ROTTEN_FLESH_BLOOD_CRYSTAL.identifier()));
         getOrCreateRawBuilder(VillagerTradeTags.CLERIC_LEVEL_2)
                 .add(TagEntry.element(ModVillagerTrades.CLERIC_2_EMERALD_BLOOD_CRYSTAL.identifier()));
+        getOrCreateRawBuilder(VillagerTradeTags.LIBRARIAN_LEVEL_3)
+                .add(TagEntry.element(ModVillagerTrades.LIBRARIAN_3_EMERALD_BLOOD_CRYSTAL_LIVO_GUIDE_BOOK.identifier()));
     }
 }

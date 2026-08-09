@@ -17,7 +17,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -74,7 +73,7 @@ public class ModModelProvider extends FixedModelProvider {
 
         itemModels.generateFlatItem(ModItems.BLOOD_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.FLESH_BLOCK_TEST_ITEM.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.LIVO_GUIDE_BOOK_ITEM.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.LIVO_GUIDE_BOOK.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(ModItems.BLOOD_CRYSTAL_STAFF.get());
     }

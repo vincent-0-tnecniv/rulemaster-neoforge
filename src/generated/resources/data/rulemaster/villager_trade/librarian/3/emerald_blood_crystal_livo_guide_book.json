@@ -1,0 +1,16 @@
+{
+  "additional_wants": {
+    "count": 4.0,
+    "id": "rulemaster:blood_crystal"
+  },
+  "gives": {
+    "id": "rulemaster:livo_guide_book"
+  },
+  "max_uses": 1.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 40.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 6.0
+}

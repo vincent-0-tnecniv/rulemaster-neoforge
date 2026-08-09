@@ -15,6 +15,8 @@ import net.vincent.rulemaster.datagen.tags.ModBlockTagsProvider;
 import net.vincent.rulemaster.datagen.tags.ModDamageTypeTagsProvider;
 import net.vincent.rulemaster.datagen.tags.ModEntityTypeTagsProvider;
 import net.vincent.rulemaster.datagen.tags.ModItemTagsProvider;
+import net.vincent.rulemaster.datagen.villager.tags.ModPOITags;
+import net.vincent.rulemaster.datagen.villager.tags.ModVillagerTradeTags;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +38,7 @@ public class RuleMasterDataGen {
         generator.addProvider(true, new ModEntityTypeTagsProvider(packOutput, lookupProvider));
         generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
-
+        generator.addProvider(true, new ModPOITags(packOutput, lookupProvider));
+        generator.addProvider(true, new ModVillagerTradeTags(packOutput, lookupProvider));
     }
 }

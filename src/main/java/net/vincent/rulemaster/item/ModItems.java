@@ -26,7 +26,7 @@ public class ModItems {
     public static DeferredItem<Item> FLESH_BLOCK_TEST_ITEM = ITEMS.registerItem("flesh_block_test_item",
             FleshBlockTestItem::new);
 
-    public static DeferredItem<Item> LIVO_GUIDE_BOOK_ITEM = ITEMS.registerItem("livo_guide_book_item",
+    public static DeferredItem<Item> LIVO_GUIDE_BOOK = ITEMS.registerItem("livo_guide_book",
             LivoGuideBookItem::new);
 
     public static ResourceKey<Item> getRK(Item item) {
