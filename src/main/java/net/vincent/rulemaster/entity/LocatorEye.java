@@ -1,7 +1,5 @@
 package net.vincent.rulemaster.entity;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,6 +19,8 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
+import java.util.function.Supplier;
+
 public class LocatorEye extends Entity {
 
     private static final float MIN_CAMERA_DISTANCE_SQUARED = 12.25F;
@@ -30,16 +30,16 @@ public class LocatorEye extends Entity {
     private @Nullable Vec3 target;
     private int life;
     private boolean surviveAfterDeath;
-    private final Item defaultItem;
+    private final Supplier<Item> supplier;
 
-    public LocatorEye(EntityType<? extends EyeOfEnder> type, Level level, Item defaultItem) {
+    public LocatorEye(EntityType<? extends EyeOfEnder> type, Level level, Supplier<Item> supplier) {
         this.surviveAfterDeath = false;
-        this.defaultItem = defaultItem;
+        this.supplier = supplier;
         super(type, level);
     }
 
-    public LocatorEye(Level level, double x, double y, double z, Item defaultItem) {
-        this(EntityTypes.EYE_OF_ENDER, level, defaultItem);
+    public LocatorEye(Level level, double x, double y, double z, Supplier<Item> supplier) {
+        this(EntityTypes.EYE_OF_ENDER, level, supplier);
         this.setPos(x, y, z);
     }
 
@@ -141,7 +141,7 @@ public class LocatorEye extends Entity {
     }
 
     private ItemStack getDefaultItem() {
-        return new ItemStack(defaultItem);
+        return new ItemStack(supplier.get());
     }
 
     public float getLightLevelDependentMagicValue() {

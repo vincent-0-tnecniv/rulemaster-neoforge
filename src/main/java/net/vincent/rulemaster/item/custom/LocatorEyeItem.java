@@ -15,7 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.EnderEyeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -23,7 +23,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.phys.Vec3;
 import net.vincent.rulemaster.entity.LocatorEye;
 
-public class LocatorEyeItem extends EnderEyeItem {
+public class LocatorEyeItem extends Item {
 
     private final TagKey<Structure> findingTag;
     private final SimpleParticleType particleType;
@@ -57,7 +57,7 @@ public class LocatorEyeItem extends EnderEyeItem {
             if(!player.isCreative()) {
                 player.getCooldowns().addCooldown(itemStack, 60);
             }
-            LocatorEye locatorEye = new LocatorEye(level, player.getX(), player.getY(0.5F), player.getZ(), this.asItem());
+            LocatorEye locatorEye = new LocatorEye(level, player.getX(), player.getY(0.5F), player.getZ(), this::asItem);
             locatorEye.setItem(itemStack);
             locatorEye.signalTo(Vec3.atLowerCornerOf(nearestMapFeature));
             level.gameEvent(GameEvent.PROJECTILE_SHOOT, locatorEye.position(), GameEvent.Context.of(player));
