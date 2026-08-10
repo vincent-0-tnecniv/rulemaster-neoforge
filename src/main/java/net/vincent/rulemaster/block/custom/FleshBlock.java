@@ -21,7 +21,7 @@ public class FleshBlock extends BlockWithState {
     public static final IntegerProperty TOC = IntegerProperty.create("toc", 0, 35);
 
     public FleshBlock(Properties properties) {
-        super(properties.strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).sound(SoundType.SLIME_BLOCK));
+        super(properties.strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).sound(SoundType.SLIME_BLOCK).lightLevel(_ -> 15));
         this.registerDefaultState(this.defaultBlockState().setValue(TOC, 0));
     }
 

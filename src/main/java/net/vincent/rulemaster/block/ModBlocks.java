@@ -37,7 +37,7 @@ public class ModBlocks {
             FleshBlock::new);
 
     public static final DeferredBlock<Block> FLESH_SLAB = registerBlock("flesh_slab",
-            properties -> new SlabBlock(properties.strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).sound(SoundType.SLIME_BLOCK)) {
+            properties -> new SlabBlock(properties.strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).sound(SoundType.SLIME_BLOCK).lightLevel(_ -> 15)) {
                 @Override
                 protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
                     return ModBlockInteractions.FleshBlock.useItemOnFleshBlockLike(itemStack, state, level, pos, player, hand, hitResult, super::useItemOn);

@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -26,6 +27,10 @@ public class ModBlockInteractions {
 
             if (player.isCreative()) {
                 return superObject.originalUseItemOn(itemStack, state, level, pos, player, hand, hitResult);
+            }
+
+            if(player.getItemInHand(hand).getItem() instanceof AirItem) {
+                return InteractionResult.FAIL;
             }
 
             if (itemStack.getItem() instanceof BlockItem) {
