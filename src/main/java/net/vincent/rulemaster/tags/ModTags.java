@@ -12,6 +12,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.vincent.rulemaster.RuleMaster;
 
 public class ModTags {
@@ -41,6 +42,15 @@ public class ModTags {
 
         public static TagKey<EntityType<?>> createTag(String name){
             return TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, name));
+        }
+    }
+
+    public static class Structures {
+
+        public static TagKey<Structure> EYE_OF_BIRTH_LOCATED = createTag("eye_of_birth_located");
+
+        public static TagKey<Structure> createTag(String name){
+            return TagKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, name));
         }
     }
 

@@ -13,10 +13,7 @@ import net.vincent.rulemaster.datagen.ModModelProvider;
 import net.vincent.rulemaster.datagen.ModRecipeProvider;
 import net.vincent.rulemaster.datagen.datapack.ModDataPackProvider;
 import net.vincent.rulemaster.datagen.loot.ModGlobalLootModifierProvider;
-import net.vincent.rulemaster.datagen.tags.ModBlockTagsProvider;
-import net.vincent.rulemaster.datagen.tags.ModDamageTypeTagsProvider;
-import net.vincent.rulemaster.datagen.tags.ModEntityTypeTagsProvider;
-import net.vincent.rulemaster.datagen.tags.ModItemTagsProvider;
+import net.vincent.rulemaster.datagen.tags.*;
 import net.vincent.rulemaster.datagen.villager.tags.ModPOITags;
 import net.vincent.rulemaster.datagen.villager.tags.ModVillagerTradeTags;
 
@@ -33,16 +30,19 @@ public class RuleMasterDataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(true, new ModModelProvider(packOutput));
-        generator.addProvider(true, new ModDataPackProvider(packOutput, lookupProvider));
-        generator.addProvider(true, new ModItemTagsProvider(packOutput, lookupProvider));
-        generator.addProvider(true, new ModDamageTypeTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
+
         generator.addProvider(true, new ModBlockTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModItemTagsProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ModEntityTypeTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModDamageTypeTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModStructureTagsProvider(packOutput, lookupProvider));
+
+        generator.addProvider(true, new ModDataPackProvider(packOutput, lookupProvider));
         generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
         generator.addProvider(true, new ModPOITags(packOutput, lookupProvider));
         generator.addProvider(true, new ModVillagerTradeTags(packOutput, lookupProvider));
-        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
         generator.addProvider(true, new ModGlobalLootModifierProvider(packOutput, lookupProvider));
     }
 }

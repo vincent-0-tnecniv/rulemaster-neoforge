@@ -1,18 +1,15 @@
 package net.vincent.rulemaster.datagen;
 
-import net.minecraft.world.item.Items;
-import net.vincent.rulemaster.block.ModBlocks;
-import net.vincent.rulemaster.item.ModItems;
-import net.vincent.rulemaster.util.datagen.BaseRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.crafting.CookingBookCategory;
-import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.Items;
+import net.vincent.rulemaster.block.ModBlocks;
+import net.vincent.rulemaster.item.ModItems;
+import net.vincent.rulemaster.util.datagen.BaseRecipeProvider;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends BaseRecipeProvider {
@@ -43,6 +40,15 @@ public class ModRecipeProvider extends BaseRecipeProvider {
         shapeless(RecipeCategory.MISC, ModItems.LIVO_GUIDE_BOOK)
                 .requires(ModItems.BLOOD_CRYSTAL)
                 .requires(Items.BOOK)
+                .unlockedBy(getHasName(ModItems.BLOOD_CRYSTAL), has(ModItems.BLOOD_CRYSTAL))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.EYE_OF_BIRTH)
+                .pattern("XXX")
+                .pattern("XOX")
+                .pattern("XXX")
+                .define('X', ModItems.BLOOD_CRYSTAL)
+                .define('O', Items.ENDER_EYE)
                 .unlockedBy(getHasName(ModItems.BLOOD_CRYSTAL), has(ModItems.BLOOD_CRYSTAL))
                 .save(output);
 

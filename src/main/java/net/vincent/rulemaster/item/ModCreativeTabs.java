@@ -24,6 +24,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.BLOOD_PIERCER);
                         output.accept(ModItems.FLESH_BLOCK_TEST_ITEM);
                         output.accept(ModItems.LIVO_GUIDE_BOOK);
+                        output.accept(ModItems.EYE_OF_BIRTH);
 
                         output.accept(ModBlocks.FLESH_BLOCK);
                         output.accept(ModBlocks.FLESH_SLAB);

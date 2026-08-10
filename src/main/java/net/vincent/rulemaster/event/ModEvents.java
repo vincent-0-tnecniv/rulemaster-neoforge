@@ -4,12 +4,14 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -17,8 +19,11 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.MobSplitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.attachments.ModAttachments;
+import net.vincent.rulemaster.block.ModBlocks;
+import net.vincent.rulemaster.block.custom.FleshBlock;
 import net.vincent.rulemaster.command.ModCommands;
 import net.vincent.rulemaster.item.ModItems;
 import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
@@ -34,6 +39,16 @@ public class ModEvents {
     public static void registerModCommands(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
         ModCommands.registerCommands(dispatcher);
+    }
+
+    @SubscribeEvent
+    public static void avoidPlacement(PlayerInteractEvent.RightClickBlock event) {
+        if(event.getEntity().isCreative()){ return; }
+        Block block = event.getLevel().getBlockState(event.getPos()).getBlock();
+        if(block instanceof FleshBlock || block == ModBlocks.FLESH_SLAB.get()){
+            event.getEntity().sendOverlayMessage(Component.translatable("block.rulemaster.flesh_block.place_block_failed"));
+            event.setCanceled(true);
+        }
     }
 
     @SubscribeEvent

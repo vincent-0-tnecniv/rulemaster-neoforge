@@ -66,7 +66,8 @@ public class LivoGuideBookItem extends WrittenBookItem {
                             Component.literal(
                                     "§lHOW TO FIND\n"
                             ).append(
-                                    Component.literal("""
+                                    Component.literal(
+                                            """
                                             There are two ways to find Livo.
                                             
                                             1. Find Livo using an Eye of Birth
@@ -74,6 +75,12 @@ public class LivoGuideBookItem extends WrittenBookItem {
                                             """
                                     )
                             )
+                    ),
+                    Filterable.passThrough(
+                            Component.literal(
+                                    """
+                                    Eye of Birth can be crafted with an Eye of Ender, and surrounding the eye with 8 Blood Crystals
+                                    """)
                     )
             ), true);
 

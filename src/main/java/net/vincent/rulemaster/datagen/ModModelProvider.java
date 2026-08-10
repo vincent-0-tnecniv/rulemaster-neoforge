@@ -74,6 +74,7 @@ public class ModModelProvider extends FixedModelProvider {
         itemModels.generateFlatItem(ModItems.BLOOD_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.FLESH_BLOCK_TEST_ITEM.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.LIVO_GUIDE_BOOK.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EYE_OF_BIRTH.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(ModItems.BLOOD_CRYSTAL_STAFF.get());
     }

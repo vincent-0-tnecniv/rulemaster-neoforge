@@ -23,6 +23,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.block.custom.BloodCrystalBlock;
 import net.vincent.rulemaster.block.custom.FleshBlock;
+import net.vincent.rulemaster.block.interaction.ModBlockInteractions;
 import net.vincent.rulemaster.item.ModItems;
 
 import java.util.function.Consumer;
@@ -30,20 +31,16 @@ import java.util.function.Function;
 
 public class ModBlocks {
 
-    public static DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(RuleMaster.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(RuleMaster.MOD_ID);
 
-    public static DeferredBlock<Block> FLESH_BLOCK = registerBlock("flesh_block",
+    public static final DeferredBlock<Block> FLESH_BLOCK = registerBlock("flesh_block",
             FleshBlock::new);
 
-    public static DeferredBlock<Block> FLESH_SLAB = registerBlock("flesh_slab",
+    public static final DeferredBlock<Block> FLESH_SLAB = registerBlock("flesh_slab",
             properties -> new SlabBlock(properties.strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).sound(SoundType.SLIME_BLOCK)) {
                 @Override
                 protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-                    if(itemStack.getItem() instanceof BlockItem){
-                        player.sendOverlayMessage(Component.literal("The flesh is consuming your block, but you pulled it out of the block."));
-                        return InteractionResult.CONSUME;
-                    }
-                    return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
+                    return ModBlockInteractions.FleshBlock.useItemOnFleshBlockLike(itemStack, state, level, pos, player, hand, hitResult, super::useItemOn);
                 }
             });
 

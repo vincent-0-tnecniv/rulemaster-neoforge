@@ -3,6 +3,10 @@
   "item.rulemaster.blood_piercer": "§6Blood Piercer§r",
   "item.rulemaster.blood_crystal_staff": "§6Blood Crystal Staff§r",
   "item.rulemaster.flesh_block_test_item": "Flesh Block Test Item",
+  "item.rulemaster.eye_of_birth": "Eye of Birth",
+
+  "item.rulemaster.locator_eye.no_tag": "This eye is not infused with the ability to find ANY structure...",
+  "item.rulemaster.locator_eye.structure_not_found": "This eye cannot find anything nearby...",
 
   "effect.rulemaster.stealth": "Stealth",
   "effect.rulemaster.stun": "Stunned",
@@ -16,6 +20,7 @@
 
   "block.rulemaster.blood_crystal_block": "Blood Crystal Block",
   "block.rulemaster.flesh_block": "Flesh Block",
+  "block.rulemaster.flesh_block.place_block_failed": "The flesh is consuming your block, but you pulled it out of the block.",
   "block.rulemaster.flesh_slab": "Flesh Slab",
 
   "tag.item.rulemaster.blood_crystal_repairables": "Blood Crystal Repairables",

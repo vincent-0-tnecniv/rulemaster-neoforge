@@ -1,5 +1,6 @@
 package net.vincent.rulemaster.item;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -10,6 +11,8 @@ import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.item.custom.BloodPiercerItem;
 import net.vincent.rulemaster.item.custom.FleshBlockTestItem;
 import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
+import net.vincent.rulemaster.item.custom.LocatorEyeItem;
+import net.vincent.rulemaster.tags.ModTags;
 
 public class ModItems {
     public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(RuleMaster.MOD_ID);
@@ -28,6 +31,9 @@ public class ModItems {
 
     public static DeferredItem<Item> LIVO_GUIDE_BOOK = ITEMS.registerItem("livo_guide_book",
             LivoGuideBookItem::new);
+
+    public static DeferredItem<Item> EYE_OF_BIRTH = ITEMS.registerItem("eye_of_birth",
+            properties -> new LocatorEyeItem(properties, ModTags.Structures.EYE_OF_BIRTH_LOCATED, ParticleTypes.ANGRY_VILLAGER));
 
     public static ResourceKey<Item> getRK(Item item) {
         return BuiltInRegistries.ITEM.getResourceKey(item).get();
