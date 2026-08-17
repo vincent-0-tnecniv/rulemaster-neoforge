@@ -64,7 +64,11 @@ public class ModBlocks {
             CoreOfWombBlock::new);
 
     public static final DeferredBlock<Block> LIFE_FUSED_BLOCK = registerBlock("life_fused_block",
-            LifeFusedBlock::new);
+            LifeFusedBlock::new,
+            Component.translatable("block.rulemaster.life_fused_block.desc_0"),
+            Component.translatable("block.rulemaster.life_fused_block.desc_1"),
+            Component.translatable("block.rulemaster.life_fused_block.charge_use_warning")
+            );
 
     private static DeferredBlock<Block> registerExperienceDroppingOre(String name, int minXp, int maxXp, float strength, SoundType soundType) {
         return registerBlock(name,

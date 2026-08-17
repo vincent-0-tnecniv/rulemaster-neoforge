@@ -44,5 +44,10 @@
   "message.rulemaster.life_fused_block.respawn_data_set": "Special respawn point set",
 
   "filled_map.cradle_of_life": "Blood-Stained Map",
-  "item.rulemaster.key_of_embryo.desc": "Can be used to open Mucus Doors infinitely"
+  "item.rulemaster.key_of_embryo.desc": "Can be used to open Mucus Doors infinitely",
+  "block.rulemaster.life_fused_block.desc_0": "Right click in The End to save a temporary respawn point!",
+  "block.rulemaster.life_fused_block.desc_1": "Sneak right click in The End to remove all temporary respawn points!",
+  "block.rulemaster.life_fused_block.charge_use_warning": "Beware of your active respawn anchors! It might drain their uses!",
+  "message.rulemaster.nether_respawn_using_glowstone_refunded_0": "The life-fused block drained a charge from your active respawn anchor!",
+  "message.rulemaster.nether_respawn_using_glowstone_refunded_1": "As such, you were refunded a glowstone!"
 }

@@ -11,12 +11,14 @@ import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.properties.conditional.HasComponent;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -39,7 +41,7 @@ public class ModModelProvider extends FixedModelProvider {
 
     @Override
     protected void registerModels(FixedBlockModelGenerators blockModels, FixedItemModelGenerators itemModels) {
-        PropertyDispatch<MultiVariant> dispatch = PropertyDispatch.initial(FleshBlock.TOC)
+        PropertyDispatch<MultiVariant> fleshBlockTextureSets = PropertyDispatch.initial(FleshBlock.TOC)
                 .generate((value) -> BlockModelGenerators.plainVariant(
                         blockModels.createSuffixedVariant(
                                 ModBlocks.FLESH_BLOCK.get(),
@@ -49,9 +51,31 @@ public class ModModelProvider extends FixedModelProvider {
                         )
                 ));
 
+        TextureMapping mapping = new TextureMapping()
+                .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_bottom"))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_top"))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_side"))
+                .put(TextureSlot.PARTICLE, new Material(modLocation("placeholder")));
+        Identifier model = ModelTemplates.CUBE_BOTTOM_TOP.create(ModBlocks.LIFE_FUSED_BLOCK.get(),
+                mapping, blockModels.modelOutput);
+//        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.LIFE_FUSED_BLOCK.get()).with(PropertyDispatch.initial(BlockStateProperties.CANDLES).generate((_) -> plainVariant(chargeLevelModels))));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.LIFE_FUSED_BLOCK.get(),
+                BlockModelGenerators.plainVariant(model)));
+
+        // _ -> new TexturedModel(new TextureMapping()
+        //                        .put(TextureSlot.DOWN, new Material(modLocation("block/life_fused_block_bottom")))
+        //                        .put(TextureSlot.EAST, new Material(modLocation("block/life_fused_block_side")))
+        //                        .put(TextureSlot.NORTH, new Material(modLocation("block/life_fused_block_side")))
+        //                        .put(TextureSlot.WEST, new Material(modLocation("block/life_fused_block_side")))
+        //                        .put(TextureSlot.SOUTH, new Material(modLocation("block/life_fused_block_side")))
+        //                        .put(TextureSlot.UP, new Material(modLocation("block/life_fused_block_top")))
+        //                        .put(TextureSlot.PARTICLE, new Material(Identifier.parse("placeholder"))), ModelTemplates.CUBE)
+
+//        Identifier modelLoc = TexturedModel.CUBE_TOP_BOTTOM.create(ModBlocks.LIFE_FUSED_BLOCK.get(), blockModels.modelOutput);
+
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator.dispatch(ModBlocks.FLESH_BLOCK.get())
-                        .with(dispatch)
+                        .with(fleshBlockTextureSets)
         );
 
         blockModels.createFamilyWithExistingFullBlock(ModBlocks.FLESH_BLOCK)
@@ -62,7 +86,6 @@ public class ModModelProvider extends FixedModelProvider {
         blockModels.createTrivialCube(ModBlocks.BLOOD_CRYSTAL_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.MUCUS_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.CORE_OF_WOMB.get());
-        blockModels.createTrivialCube(ModBlocks.LIFE_FUSED_BLOCK.get());
 
         ItemModel.Unbaked piercerNormalModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(ModItems.BLOOD_PIERCER.get(), ModelTemplates.FLAT_HANDHELD_ITEM));
         ItemModel.Unbaked piercerHalfHealthModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(ModItems.BLOOD_PIERCER.get(), "_half_health", ModelTemplates.FLAT_HANDHELD_ITEM));

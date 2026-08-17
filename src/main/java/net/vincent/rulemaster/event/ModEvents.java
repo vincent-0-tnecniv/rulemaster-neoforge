@@ -9,11 +9,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -126,9 +128,17 @@ public class ModEvents {
         passOn(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END, player);
         passOn(ModAttachments.PLAYER_END_SPAWN_POS, player);
         if (player instanceof ServerPlayer serverPlayer) {
+            ServerLevel playerCurrentLevel = serverPlayer.level();
             boolean shouldRespawnInEnd = serverPlayer.getData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END);
             BlockPos respawnPos = serverPlayer.getData(ModAttachments.PLAYER_END_SPAWN_POS);
             if (shouldRespawnInEnd) {
+                boolean shouldRefunedGlowstone = false;
+                if(playerCurrentLevel.dimension() == Level.NETHER){
+                    // Player would have used up a glowstone to respawn in the nether to tp to the end - refund a glowstone
+                    shouldRefunedGlowstone = true;
+                    player.sendSystemMessage(Component.translatable("message.rulemaster.nether_respawn_using_glowstone_refunded_0"));
+                    player.sendSystemMessage(Component.translatable("message.rulemaster.nether_respawn_using_glowstone_refunded_1"));
+                }
                 ServerLevel endLevel = serverPlayer.level().getServer().getLevel(Level.END);
                 if (endLevel != null) {
                     serverPlayer.teleportTo(
@@ -141,6 +151,16 @@ public class ModEvents {
                             serverPlayer.getXRot(),
                             false
                     );
+                    if(shouldRefunedGlowstone){
+                        ItemEntity itemEntity = new ItemEntity(
+                                serverPlayer.level(),
+                                respawnPos.getX() + 0.5,
+                                respawnPos.getY() + 0.5,
+                                respawnPos.getZ() + 0.5,
+                                new ItemStack(Blocks.GLOWSTONE)
+                        );
+                        serverPlayer.level().addFreshEntity(itemEntity);
+                    }
                 }
             }
         }
@@ -168,10 +188,6 @@ public class ModEvents {
     }
 
     private static <T, U extends Entity> void register(Supplier<AttachmentType<T>> attachment, T defaultValue, U entity) {
-        /**
-         * Registers the attachment of a given entity, or update if it already has one.
-         *
-         */
 
         if(entity.hasData(attachment)){
             passOn(attachment, entity);

@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "rulemaster:block/life_fused_block"
+    "bottom": "rulemaster:block/life_fused_block_bottom",
+    "side": "rulemaster:block/life_fused_block_side",
+    "top": "rulemaster:block/life_fused_block_top"
   }
 }

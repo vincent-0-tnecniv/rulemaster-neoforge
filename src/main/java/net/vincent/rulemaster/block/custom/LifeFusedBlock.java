@@ -1,6 +1,7 @@
 package net.vincent.rulemaster.block.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -18,14 +19,19 @@ import net.minecraft.world.level.block.RespawnAnchorBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.vincent.rulemaster.attachments.ModAttachments;
 import org.jetbrains.annotations.NotNull;
 
 public class LifeFusedBlock extends RespawnAnchorBlock {
+
+    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
+
     public LifeFusedBlock(Properties properties) {
         super(properties.requiresCorrectToolForDrops().strength(50f, 1200f).lightLevel(_ -> 15));
-
+        this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.Y));
     }
 
     @Override
@@ -89,6 +95,7 @@ public class LifeFusedBlock extends RespawnAnchorBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(AXIS);
         super.createBlockStateDefinition(builder);
     }
 }
