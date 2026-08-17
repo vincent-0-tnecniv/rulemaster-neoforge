@@ -63,8 +63,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CORE_OF_WOMB = registerBlock("core_of_womb",
             CoreOfWombBlock::new);
 
-    public static final DeferredBlock<Block> REVIVAL_BLOCK = registerBlock("revival_block",
-            RevivalBlock::new);
+    public static final DeferredBlock<Block> LIFE_FUSED_BLOCK = registerBlock("life_fused_block",
+            LifeFusedBlock::new);
 
     private static DeferredBlock<Block> registerExperienceDroppingOre(String name, int minXp, int maxXp, float strength, SoundType soundType) {
         return registerBlock(name,

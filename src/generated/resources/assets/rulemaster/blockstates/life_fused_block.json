@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rulemaster:block/life_fused_block"
+    }
+  }
+}

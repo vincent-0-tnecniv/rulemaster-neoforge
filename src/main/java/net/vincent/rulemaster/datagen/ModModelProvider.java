@@ -62,6 +62,7 @@ public class ModModelProvider extends FixedModelProvider {
         blockModels.createTrivialCube(ModBlocks.BLOOD_CRYSTAL_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.MUCUS_BLOCK.get());
         blockModels.createTrivialCube(ModBlocks.CORE_OF_WOMB.get());
+        blockModels.createTrivialCube(ModBlocks.LIFE_FUSED_BLOCK.get());
 
         ItemModel.Unbaked piercerNormalModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(ModItems.BLOOD_PIERCER.get(), ModelTemplates.FLAT_HANDHELD_ITEM));
         ItemModel.Unbaked piercerHalfHealthModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(ModItems.BLOOD_PIERCER.get(), "_half_health", ModelTemplates.FLAT_HANDHELD_ITEM));

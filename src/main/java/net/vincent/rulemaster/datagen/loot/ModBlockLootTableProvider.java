@@ -17,6 +17,7 @@ public class ModBlockLootTableProvider extends BaseBlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.BLOOD_CRYSTAL_BLOCK.get());
+        dropSelf(ModBlocks.LIFE_FUSED_BLOCK.get());
     }
 
     @Override

@@ -34,6 +34,7 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.MUCUS_STAIRS);
                         output.accept(ModBlocks.MUCUS_DOOR);
                         output.accept(ModBlocks.CORE_OF_WOMB);
+                        output.accept(ModBlocks.LIFE_FUSED_BLOCK);
                     })
                     .build());
 
