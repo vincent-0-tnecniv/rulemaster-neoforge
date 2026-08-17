@@ -21,8 +21,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vincent.rulemaster.RuleMaster;
-import net.vincent.rulemaster.block.custom.BloodCrystalBlock;
-import net.vincent.rulemaster.block.custom.FleshBlock;
+import net.vincent.rulemaster.block.custom.*;
 import net.vincent.rulemaster.block.interaction.ModBlockInteractions;
 import net.vincent.rulemaster.item.ModItems;
 
@@ -46,6 +45,26 @@ public class ModBlocks {
 
     public static DeferredBlock<Block> BLOOD_CRYSTAL_BLOCK = registerBlock("blood_crystal_block",
             BloodCrystalBlock::new);
+
+    public static DeferredBlock<Block> MUCUS_BLOCK = registerBlock("mucus_block",
+            MucusBlock::new);
+
+    public static final DeferredBlock<Block> MUCUS_STAIRS = registerBlock("mucus_stairs",
+            properties -> new StairBlock(ModBlocks.MUCUS_BLOCK.get().defaultBlockState(), properties.strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).sound(SoundType.SLIME_BLOCK).lightLevel(_ -> 15).friction(0.9999999f)) {
+                @Override
+                protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+                    return ModBlockInteractions.FleshBlock.useItemOnFleshBlockLike(itemStack, state, level, pos, player, hand, hitResult, super::useItemOn);
+                }
+            });
+
+    public static final DeferredBlock<Block> MUCUS_DOOR = registerBlock("mucus_door",
+            MucusDoorBlock::new);
+
+    public static final DeferredBlock<Block> CORE_OF_WOMB = registerBlock("core_of_womb",
+            CoreOfWombBlock::new);
+
+    public static final DeferredBlock<Block> REVIVAL_BLOCK = registerBlock("revival_block",
+            RevivalBlock::new);
 
     private static DeferredBlock<Block> registerExperienceDroppingOre(String name, int minXp, int maxXp, float strength, SoundType soundType) {
         return registerBlock(name,

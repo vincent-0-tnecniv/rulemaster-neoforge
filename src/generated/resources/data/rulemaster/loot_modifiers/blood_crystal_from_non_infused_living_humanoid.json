@@ -1,0 +1,13 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "minecraft:entity_type": "#rulemaster:drops_bc_half_chance"
+      }
+    }
+  ],
+  "table": "rulemaster:extra/glm/blood_crystal_from_living_humanoid"
+}

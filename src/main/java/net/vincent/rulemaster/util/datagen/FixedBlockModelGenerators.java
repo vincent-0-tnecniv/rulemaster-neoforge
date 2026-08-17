@@ -35,14 +35,23 @@ public class FixedBlockModelGenerators extends BlockModelGenerators {
         super(blockStateOutput, itemModelOutput, modelOutput);
     }
 
+    public BlockFamilyProvider createFamilyWithExistingFullBlock(Block fullBlock) {
+        BlockFamilyProvider provider = new BlockFamilyProvider(TextureMapping.cube(fullBlock));
+        provider.fullBlock = plainModel(ModelLocationUtils.getModelLocation(fullBlock));
+        return provider;
+    }
+
+    public BlockFamilyProvider createFamilyWithExistingFullBlock(DeferredBlock<Block> fullBlock) {
+        return createFamilyWithExistingFullBlock(fullBlock.get());
+    }
+
     public BlockFamilyProvider createFamily(Block block) {
         TexturedModel model = TEXTURED_MODELS.getOrDefault(block, TexturedModel.CUBE.get(block));
         return (new BlockFamilyProvider(model.getMapping())).fullBlock(block, model.getTemplate());
     }
 
     public BlockFamilyProvider createFamily(DeferredBlock<Block> block) {
-        TexturedModel model = TEXTURED_MODELS.getOrDefault(block.get(), TexturedModel.CUBE.get(block.get()));
-        return (new BlockFamilyProvider(model.getMapping())).fullBlock(block.get(), model.getTemplate());
+        return createFamily(block.get());
     }
 
     public class BlockFamilyProvider {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "textures": {
+    "bottom": "rulemaster:block/mucus_door_bottom",
+    "top": "rulemaster:block/mucus_door_top"
+  }
+}

@@ -54,10 +54,14 @@ public class ModModelProvider extends FixedModelProvider {
                         .with(dispatch)
         );
 
-        blockModels.familyWithExistingFullBlock(ModBlocks.FLESH_BLOCK.get())
-                .slab(ModBlocks.FLESH_SLAB.get());
+        blockModels.createFamilyWithExistingFullBlock(ModBlocks.FLESH_BLOCK)
+                .slab(ModBlocks.FLESH_SLAB.get())
+                .stairs(ModBlocks.MUCUS_STAIRS.get())
+                .door(ModBlocks.MUCUS_DOOR.get());
 
         blockModels.createTrivialCube(ModBlocks.BLOOD_CRYSTAL_BLOCK.get());
+        blockModels.createTrivialCube(ModBlocks.MUCUS_BLOCK.get());
+        blockModels.createTrivialCube(ModBlocks.CORE_OF_WOMB.get());
 
         ItemModel.Unbaked piercerNormalModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(ModItems.BLOOD_PIERCER.get(), ModelTemplates.FLAT_HANDHELD_ITEM));
         ItemModel.Unbaked piercerHalfHealthModel = ItemModelUtils.plainModel(itemModels.createFlatItemModel(ModItems.BLOOD_PIERCER.get(), "_half_health", ModelTemplates.FLAT_HANDHELD_ITEM));
@@ -75,6 +79,7 @@ public class ModModelProvider extends FixedModelProvider {
         itemModels.generateFlatItem(ModItems.FLESH_BLOCK_TEST_ITEM.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.LIVO_GUIDE_BOOK.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.EYE_OF_BIRTH.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.KEY_OF_EMBRYO.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(ModItems.BLOOD_CRYSTAL_STAFF.get());
     }

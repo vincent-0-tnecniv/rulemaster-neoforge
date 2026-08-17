@@ -4,6 +4,7 @@
   "item.rulemaster.blood_crystal_staff": "§6Blood Crystal Staff§r",
   "item.rulemaster.flesh_block_test_item": "Flesh Block Test Item",
   "item.rulemaster.eye_of_birth": "Eye of Birth",
+  "item.rulemaster.key_of_embryo": "Key Of Embryo",
 
   "item.rulemaster.locator_eye.no_tag": "This eye is not infused with the ability to find ANY structure...",
   "item.rulemaster.locator_eye.structure_not_found": "This eye cannot find anything nearby...",
@@ -22,6 +23,11 @@
   "block.rulemaster.flesh_block": "Flesh Block",
   "block.rulemaster.flesh_block.place_block_failed": "The flesh is consuming your block, but you pulled it out of the block.",
   "block.rulemaster.flesh_slab": "Flesh Slab",
+  "block.rulemaster.mucus_stairs": "Mucus Stairs",
+  "block.rulemaster.mucus_block": "Mucus Block",
+  "block.rulemaster.mucus_door": "Mucus Door",
+  "block.rulemaster.mucus_door.open_failed": "Obtain a Key of Embryo to open this door again!",
+  "block.rulemaster.core_of_womb": "Core of Womb",
 
   "tag.item.rulemaster.blood_crystal_repairables": "Blood Crystal Repairables",
 
@@ -30,5 +36,12 @@
 
   "message.rulemaster.assign_player_type.lunar": "You have been assigned with the player type: Lunar!",
   "message.rulemaster.assign_player_type.solar": "You have been assigned with the player type: Solar!",
-  "message.rulemaster.assign_player_type.warn": "Effects may come after a few days..."
+  "message.rulemaster.assign_player_type.warn": "Effects may come after a few days...",
+  "message.rulemaster.revival_block.cannot_set_spawn": "Use a bed or a respawn anchor instead!",
+  "message.rulemaster.revival_block.obstructed_block": "Ensure that the two blocks above the revival block is air!",
+  "message.rulemaster.revival_block.respawn_data_reset": "Special respawn point cleared",
+  "message.rulemaster.revival_block.respawn_data_set": "Special respawn point set",
+
+  "filled_map.cradle_of_life": "Blood-Stained Map",
+  "item.rulemaster.key_of_embryo.desc": "Can be used to open Mucus Doors infinitely"
 }

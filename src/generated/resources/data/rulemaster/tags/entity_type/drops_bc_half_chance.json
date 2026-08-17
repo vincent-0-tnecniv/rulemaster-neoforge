@@ -1,0 +1,9 @@
+{
+  "remove": [
+    "#rulemaster:blood_infused_humanoid",
+    "minecraft:player"
+  ],
+  "values": [
+    "#rulemaster:living_humanoid"
+  ]
+}

@@ -25,10 +25,15 @@ public class ModCreativeTabs {
                         output.accept(ModItems.FLESH_BLOCK_TEST_ITEM);
                         output.accept(ModItems.LIVO_GUIDE_BOOK);
                         output.accept(ModItems.EYE_OF_BIRTH);
+                        output.accept(ModItems.KEY_OF_EMBRYO);
 
                         output.accept(ModBlocks.FLESH_BLOCK);
                         output.accept(ModBlocks.FLESH_SLAB);
                         output.accept(ModBlocks.BLOOD_CRYSTAL_BLOCK);
+                        output.accept(ModBlocks.MUCUS_BLOCK);
+                        output.accept(ModBlocks.MUCUS_STAIRS);
+                        output.accept(ModBlocks.MUCUS_DOOR);
+                        output.accept(ModBlocks.CORE_OF_WOMB);
                     })
                     .build());
 

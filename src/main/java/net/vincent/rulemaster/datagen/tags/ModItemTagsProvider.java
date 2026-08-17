@@ -30,6 +30,9 @@ public class ModItemTagsProvider extends BaseItemTagsProvider {
         tag(ModTags.Items.BLOOD_CRYSTAL_REPAIRABLE)
                 .add(ModItems.getRK(ModItems.BLOOD_CRYSTAL));
 
+        tag(ModTags.Items.MUCUS_DOOR_INFINITELY_OPENABLE)
+                .add(ModItems.getRK(ModItems.KEY_OF_EMBRYO));
+
 //        allTools(ModItems.AZURITE_SWORD, ModItems.AZURITE_PICKAXE, ModItems.AZURITE_AXE,
 //                ModItems.AZURITE_SHOVEL, ModItems.AZURITE_HOE, ModItems.AZURITE_SPEAR);
 //

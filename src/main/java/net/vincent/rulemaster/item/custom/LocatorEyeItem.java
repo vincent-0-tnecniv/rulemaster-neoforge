@@ -26,16 +26,9 @@ import net.vincent.rulemaster.entity.LocatorEye;
 public class LocatorEyeItem extends Item {
 
     private final TagKey<Structure> findingTag;
-    private final SimpleParticleType particleType;
-    public LocatorEyeItem(Properties properties, TagKey<Structure> structureTags, SimpleParticleType simpleParticleType) {
-        this.particleType = simpleParticleType;
-        this.findingTag = structureTags;
-        super(properties);
-    }
 
     public LocatorEyeItem(Properties properties, TagKey<Structure> structureTags) {
         this.findingTag = structureTags;
-        this.particleType = ParticleTypes.PORTAL;
         super(properties);
     }
 

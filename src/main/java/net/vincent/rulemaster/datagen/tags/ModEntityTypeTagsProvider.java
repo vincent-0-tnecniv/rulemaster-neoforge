@@ -20,6 +20,7 @@ public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+
         tag(ModTags.EntityTypes.BLOOD_INFUSED_HUMANOID)
                 .add(getRK(EntityTypes.WITCH));
         tag(ModTags.EntityTypes.LIVING_HUMANOID)
@@ -39,6 +40,12 @@ public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
                 .add(getRK(EntityTypes.HUSK))
                 .add(getRK(EntityTypes.ZOMBIFIED_PIGLIN))
                 .addTag(ModTags.EntityTypes.LIVING_HUMANOID);
+        tag(ModTags.EntityTypes.DROPS_BC_ALL_CHANCE)
+                .addTag(ModTags.EntityTypes.BLOOD_INFUSED_HUMANOID);
+        tag(ModTags.EntityTypes.DROPS_BC_HALF_CHANCE)
+                .addTag(ModTags.EntityTypes.LIVING_HUMANOID)
+                .remove(ModTags.EntityTypes.BLOOD_INFUSED_HUMANOID)
+                .remove(getRK(EntityTypes.PLAYER));
     }
 
     protected ResourceKey<EntityType<?>> getRK(EntityType<?> entityType){

@@ -2,15 +2,17 @@ package net.vincent.rulemaster.event;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -30,6 +32,7 @@ import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
 import net.vincent.rulemaster.tags.ModTags;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 
 @EventBusSubscriber(modid = RuleMaster.MOD_ID)
@@ -77,6 +80,18 @@ public class ModEvents {
             }
         }
         register(ModAttachments.PLAYER_JOINED, true, player);
+        RuleMaster.LOGGER.info("Player joined!");
+        if(!player.getData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END) && player instanceof ServerPlayer serverPlayer) {
+            BlockPos pos = player.getData(ModAttachments.PLAYER_END_SPAWN_POS);
+            serverPlayer.setPos(pos.getX(), pos.getY(), pos.getZ());
+            ServerLevel endServerLevel = serverPlayer.level().getServer().getLevel(Level.END);
+            if(endServerLevel == null){
+                throw new IllegalStateException("There is no end somehow???");
+            }
+            serverPlayer.setServerLevel(endServerLevel);
+            serverPlayer.setData(ModAttachments.PLAYER_END_SPAWN_POS, BlockPos.ZERO);
+            serverPlayer.setData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END, true);
+        }
     }
 
     private static boolean isLunar(Player player) {
@@ -86,9 +101,12 @@ public class ModEvents {
     @SubscribeEvent
     public static void setClonedPlayerAttachments(PlayerEvent.Clone event) {
         Player player = event.getEntity();
-        passOnFromParent(ModAttachments.MARK_OF_CRYSTAL, event.getOriginal(), player);
+        Player original = event.getOriginal();
+        passOnFromParent(ModAttachments.MARK_OF_CRYSTAL, original, player);
         passOn(ModAttachments.IS_LUNAR, player);
         passOn(ModAttachments.PLAYER_JOINED, player);
+        passOnFromParent(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END, original, player);
+        passOnFromParent(ModAttachments.PLAYER_END_SPAWN_POS, original, player);
     }
 
     @SubscribeEvent
@@ -105,6 +123,27 @@ public class ModEvents {
         passOn(ModAttachments.MARK_OF_CRYSTAL, player);
         passOn(ModAttachments.IS_LUNAR, player);
         passOn(ModAttachments.PLAYER_JOINED, player);
+        passOn(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END, player);
+        passOn(ModAttachments.PLAYER_END_SPAWN_POS, player);
+        if (player instanceof ServerPlayer serverPlayer) {
+            boolean shouldRespawnInEnd = serverPlayer.getData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END);
+            BlockPos respawnPos = serverPlayer.getData(ModAttachments.PLAYER_END_SPAWN_POS);
+            if (shouldRespawnInEnd) {
+                ServerLevel endLevel = serverPlayer.level().getServer().getLevel(Level.END);
+                if (endLevel != null) {
+                    serverPlayer.teleportTo(
+                            endLevel,
+                            respawnPos.getX() + 0.5,
+                            respawnPos.getY() + 0.5,
+                            respawnPos.getZ() + 0.5,
+                            Set.of(),
+                            serverPlayer.getYRot(),
+                            serverPlayer.getXRot(),
+                            false
+                    );
+                }
+            }
+        }
     }
 
     @SubscribeEvent

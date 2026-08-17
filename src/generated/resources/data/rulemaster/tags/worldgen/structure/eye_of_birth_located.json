@@ -1,5 +1,8 @@
 {
   "values": [
-    "minecraft:ancient_city"
+    {
+      "id": "rulemaster:cradle_of_life",
+      "required": false
+    }
   ]
 }

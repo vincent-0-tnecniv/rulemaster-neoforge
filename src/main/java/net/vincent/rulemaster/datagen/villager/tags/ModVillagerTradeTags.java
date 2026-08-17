@@ -22,5 +22,9 @@ public class ModVillagerTradeTags extends VillagerTradesTagsProvider {
                 .add(TagEntry.element(ModVillagerTrades.CLERIC_2_EMERALD_BLOOD_CRYSTAL.identifier()));
         getOrCreateRawBuilder(VillagerTradeTags.LIBRARIAN_LEVEL_3)
                 .add(TagEntry.element(ModVillagerTrades.LIBRARIAN_3_EMERALD_BLOOD_CRYSTAL_LIVO_GUIDE_BOOK.identifier()));
+        getOrCreateRawBuilder(VillagerTradeTags.CARTOGRAPHER_LEVEL_1)
+                .add(TagEntry.element(ModVillagerTrades.CARTOGRAPHER_1_BLOOD_CRYSTAL_AND_COMPASS_CRADLE_OF_LIFE_MAP.identifier()));
+        getOrCreateRawBuilder(VillagerTradeTags.WANDERING_TRADER_BUYING)
+                .add(TagEntry.element(ModVillagerTrades.WANDERING_TRADER_EMERALD_AND_BLOOD_CRYSTAL_CRADLE_OF_LIFE_MAP.identifier()));
     }
 }

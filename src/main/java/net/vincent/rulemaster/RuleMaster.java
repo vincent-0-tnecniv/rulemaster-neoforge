@@ -12,6 +12,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.vincent.rulemaster.attachments.ModAttachments;
 import net.vincent.rulemaster.block.ModBlocks;
+import net.vincent.rulemaster.block.entity.ModBlockEntities;
 import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.effect.ModEffects;
 import net.vincent.rulemaster.item.ModCreativeTabs;
@@ -37,6 +38,7 @@ public class RuleMaster {
         ModCreativeTabs.register(modEventBus);
         ModAttachments.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (RuleMaster) to respond directly to events.
