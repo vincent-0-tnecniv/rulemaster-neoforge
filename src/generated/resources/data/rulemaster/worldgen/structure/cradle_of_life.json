@@ -7,7 +7,7 @@
   "size": 2,
   "spawn_overrides": {},
   "start_height": {
-    "absolute": 0
+    "absolute": 80
   },
   "start_pool": "rulemaster:cradle_of_life",
   "step": "surface_structures",

@@ -27,6 +27,7 @@ import net.vincent.rulemaster.block.ModBlocks;
 import net.vincent.rulemaster.block.custom.FleshBlock;
 import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.item.ModItems;
+import net.vincent.rulemaster.util.ModMaterialHelper;
 import net.vincent.rulemaster.util.datagen.FixedBlockModelGenerators;
 import net.vincent.rulemaster.util.datagen.FixedItemModelGenerators;
 import net.vincent.rulemaster.util.datagen.FixedModelProvider;
@@ -55,7 +56,7 @@ public class ModModelProvider extends FixedModelProvider {
                 .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_bottom"))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_top"))
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_side"))
-                .put(TextureSlot.PARTICLE, new Material(modLocation("placeholder")));
+                .put(TextureSlot.PARTICLE, ModMaterialHelper.NONE);
         Identifier model = ModelTemplates.CUBE_BOTTOM_TOP.create(ModBlocks.LIFE_FUSED_BLOCK.get(),
                 mapping, blockModels.modelOutput);
 //        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.LIFE_FUSED_BLOCK.get()).with(PropertyDispatch.initial(BlockStateProperties.CANDLES).generate((_) -> plainVariant(chargeLevelModels))));

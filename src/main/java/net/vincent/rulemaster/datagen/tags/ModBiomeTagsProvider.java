@@ -23,12 +23,9 @@ public class ModBiomeTagsProvider extends TagsProvider<Biome> {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ModTags.StructureBiomes.CRADLE_OF_LIFE_BIOMES, false)
-                .add(Biomes.PLAINS)
-                .add(Biomes.DESERT)
-                .add(Biomes.BADLANDS)
-                .addOptionalTag(createCompatibleKey("is_plains"))
-                .addOptionalTag(createCompatibleKey("is_desert"))
-                .addOptionalTag(createCompatibleKey("is_badlands"));
+                .addOptionalTag(createCompatibleKey("is_end"))
+                .remove(Biomes.THE_END)
+                .remove(Biomes.SMALL_END_ISLANDS);
     }
 
     private static TagKey<Biome> createCompatibleKey(String searcherKey) {

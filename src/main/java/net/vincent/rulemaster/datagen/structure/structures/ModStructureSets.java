@@ -1,6 +1,5 @@
 package net.vincent.rulemaster.datagen.structure.structures;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -29,8 +28,8 @@ public class ModStructureSets {
                         )
                 ),
                 new RandomSpreadStructurePlacement(
-                        90,
-                        45,
+                        512,
+                        256,
                         RandomSpreadType.LINEAR,
                         72208002
                 )

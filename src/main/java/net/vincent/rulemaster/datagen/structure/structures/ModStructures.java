@@ -48,7 +48,7 @@ public class ModStructures {
                 startPool,
                 Optional.empty(),
                 2,
-                ConstantHeight.of(VerticalAnchor.absolute(0)),
+                ConstantHeight.of(VerticalAnchor.absolute(80)),
                 false,
                 Optional.of(Heightmap.Types.WORLD_SURFACE_WG),
                 new JigsawStructure.MaxDistance(80),
