@@ -15,7 +15,7 @@ import net.vincent.rulemaster.block.ModBlocks;
 import net.vincent.rulemaster.block.entity.ModBlockEntities;
 import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.effect.ModEffects;
-import net.vincent.rulemaster.item.ModCreativeTabs;
+import net.vincent.rulemaster.item.ModItemGroups;
 import net.vincent.rulemaster.item.ModItems;
 import net.vincent.rulemaster.loot.ModLootModifiers;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class RuleMaster {
         ModBlocks.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModEffects.register(modEventBus);
-        ModCreativeTabs.register(modEventBus);
+        ModItemGroups.register(modEventBus);
         ModAttachments.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModBlockEntities.register(modEventBus);
