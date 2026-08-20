@@ -24,10 +24,10 @@ public class ModAttachments {
             register("player_joined", false, Codec.BOOL);
 
     public static final Supplier<AttachmentType<Boolean>> PLAYER_SHOULD_RESPAWN_IN_END =
-            register("player_should_respawn_in_end", true, Codec.BOOL);
+            register("player_should_respawn_in_end", false, Codec.BOOL);
 
     public static final Supplier<AttachmentType<BlockPos>> PLAYER_END_SPAWN_POS =
-            register("player_end_spawn_pos", new BlockPos(100, 50, 0), BlockPos.CODEC);
+            register("player_end_spawn_pos", new BlockPos(0, 0, 0), BlockPos.CODEC);
 
     // Use the register() method to create a new attachment.
     // Use by passing in the ID of the attachment, the default value of the attachment,

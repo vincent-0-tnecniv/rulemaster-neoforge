@@ -1,5 +1,6 @@
 package net.vincent.rulemaster.event;
 
+import com.electronwill.nightconfig.core.io.IoUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -59,12 +60,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void updateBookContent(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
-        Item book = ModItems.LIVO_GUIDE_BOOK.get();
-        for(ItemStack item : player.getInventory()){
-            if(item.getItem() == book){
-                LivoGuideBookItem.updatedBook(item);
-            }
-        }
+        LivoGuideBookItem.update(player);
     }
 
     @SubscribeEvent

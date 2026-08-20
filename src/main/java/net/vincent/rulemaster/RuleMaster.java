@@ -17,7 +17,6 @@ import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.effect.ModEffects;
 import net.vincent.rulemaster.item.ModItemGroups;
 import net.vincent.rulemaster.item.ModItems;
-import net.vincent.rulemaster.loot.ModLootModifiers;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -37,7 +36,6 @@ public class RuleMaster {
         ModEffects.register(modEventBus);
         ModItemGroups.register(modEventBus);
         ModAttachments.register(modEventBus);
-        ModLootModifiers.register(modEventBus);
         ModBlockEntities.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
