@@ -22,6 +22,32 @@ public class RuleMasterClient {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
+//    @SubscribeEvent
+//    private static void registerPayloads(RegisterPayloadHandlersEvent event) {
+//        final PayloadRegistrar registrar = event.registrar(RuleMaster.MOD_ID)
+//                .versioned("1.0.0")
+//                .optional();
+//
+//        // Register clientbound payload (server -> client)
+//        registrar.playToClient(
+//                CameraShakePayload.TYPE,
+//                CameraShakePayload.STREAM_CODEC,
+//                (payload, context) -> {
+//                    // This runs on the client thread
+//                    context.enqueueWork(() -> {
+//                        // Handle the camera shake on client
+//                        CameraShakeManager.sendCameraShake(
+//                                (LocalPlayer) context.player(),
+//                                payload.intensityX(),
+//                                payload.intensityY(),
+//                                payload.intensityZ(),
+//                                payload.duration()
+//                        );
+//                    });
+//                }
+//        );
+//    }
+
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
 //        EntityRenderers.register(ModEntityTypes.EYE_OF_BIRTH.get(), EyeOfBirthRenderer::new);

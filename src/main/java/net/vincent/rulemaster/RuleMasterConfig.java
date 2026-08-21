@@ -29,5 +29,5 @@ public class RuleMasterConfig implements IConfigValidator {
 //            .comment("A list of items to log on common setup.")
 //            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), () -> "", Config::validateItemName);
 
-    static final ModConfigSpec SPEC = BUILDER.build();
+    static final ModConfigSpec COMMON = BUILDER.build();
 }

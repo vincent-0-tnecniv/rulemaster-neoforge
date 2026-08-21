@@ -21,23 +21,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
-import net.vincent.rulemaster.client.CameraShakeManager;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.vincent.rulemaster.RuleMaster;
+import net.vincent.rulemaster.RuleMasterConfig;
 import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.datagen.datapack.ModDamageTypes;
 import net.vincent.rulemaster.effect.ModEffects;
 import net.vincent.rulemaster.item.ModToolMaterials;
+import net.vincent.rulemaster.networking.packet.CameraShakePacketS2C;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.function.Consumer;
 
 public class BloodPiercerItem extends Item {
-    public BloodPiercerItem(Properties properties) {
-        super(properties.spear(ModToolMaterials.BLOOD_CRYSTAL,
-                0.5F, 1.2F, 0.3F, 2.0F, 8.0F,
-                5.0F, 5.1F, 8.0F, 4.6F)
-                .component(DataComponents.UNBREAKABLE, Unit.INSTANCE));
-    }
+
+    public boolean isEnabled;
 
     public static float addPierceDamage = (ModToolMaterials.BLOOD_CRYSTAL.attackDamageBonus() + 1) * 0.5f;
 
@@ -48,6 +47,13 @@ public class BloodPiercerItem extends Item {
     public static boolean isNight;
     public static long dayTime;
     private static float dayNightMultiplier;
+
+    public BloodPiercerItem(Properties properties) {
+        super(properties.spear(ModToolMaterials.BLOOD_CRYSTAL,
+                        0.5F, 1.2F, 0.3F, 2.0F, 8.0F,
+                        5.0F, 5.1F, 8.0F, 4.6F)
+                .component(DataComponents.UNBREAKABLE, Unit.INSTANCE));
+    }
 
     @Override
     public void inventoryTick(ItemStack itemStack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
@@ -60,6 +66,7 @@ public class BloodPiercerItem extends Item {
         }
         dayNightMultiplier = isNight ? 1.15f : 0.85f;
         handleDynamicTextureChange(owner, itemStack);
+        this.isEnabled = RuleMasterConfig.SHOULD_ALLOW_SECRET_ABILITY.get();
         super.inventoryTick(itemStack, level, owner, slot);
     }
 
@@ -74,15 +81,11 @@ public class BloodPiercerItem extends Item {
 
         float adjustedPierceDamage = addPierceDamage * (1 + targetMissingPercentageHealth + attackerMissingPercentageHealth) * dayNightMultiplier;
 
-        if (!entity.level().isClientSide()) {
-            if (canUseAbility) {
-                useRightClickAbility((ServerLevel) user.level(), user, entity, adjustedPierceDamage);
+        if(canUseAbility){
+            if(!entity.level().isClientSide()){
+                useRightClickAbility((ServerLevel) user.level(), (ServerPlayer) user, entity, adjustedPierceDamage);
                 user.getCooldowns().addCooldown(itemStack, ABILITY_COOLDOWN);
-            }
-        }
-        if (entity.level().isClientSide()) {
-            if (canUseAbility) {
-                playNormalAttackSound(entity, user);
+                playNormalAttackSound((ServerLevel) user.level(), entity, user);
             }
         }
         return InteractionResult.PASS;
@@ -109,19 +112,29 @@ public class BloodPiercerItem extends Item {
 
         if (!target.level().isClientSide()) {
             ServerLevel level = (ServerLevel) attacker.level();
-            if (target.getName().getString().toLowerCase().contains("hazel")) {
-                targetDied = true;
-                adjustedPierceDamage = Float.MAX_VALUE;
-                attacker.heal(Float.MAX_VALUE);
-                if(attacker instanceof ServerPlayer player){
-                    CameraShakeManager.sendCameraShake(player, 5f, 3f, 5f, 20);
+//            RuleMaster.LOGGER.info("Value of this.isEnabled: {}", this.isEnabled);
+//            RuleMaster.LOGGER.info("Value of target.getName().getString().toLowerCase().contains(\"hazel\"): {}", target.getName().getString().toLowerCase().contains("hazel"));
+            if(this.isEnabled){
+                if (target.getName().getString().toLowerCase().contains("hazel")) {
+                    targetDied = true;
+                    adjustedPierceDamage = Float.MAX_VALUE;
+                    attacker.heal(Float.MAX_VALUE);
+                    if(attacker instanceof ServerPlayer player){
+                        shake(player);
+                        RuleMaster.LOGGER.info("Sent CameraShakePacketS2C!");
+                    }
+                    hasDiscoveredSecretAbility = true;
                 }
-                hasDiscoveredSecretAbility = true;
             }
             DamageSource bleeding = target.damageSources().source(ModDamageTypes.BLEEDING, attacker);
             float shouldRemainHealth = target.getHealth() - adjustedPierceDamage;
             boolean shouldDie = shouldRemainHealth <= 0;
             boolean belowOneFifths = shouldRemainHealth / target.getMaxHealth() <= 0.2f;
+//            RuleMaster.LOGGER.info("Target Health: {}", target.getHealth());
+//            RuleMaster.LOGGER.info("Adjusted Pierce Damage: {}", adjustedPierceDamage);
+//            RuleMaster.LOGGER.info(" ^ This should be infinite!");
+//            RuleMaster.LOGGER.info("SHOULD the target be dead? {}", shouldDie);
+//            RuleMaster.LOGGER.info("IS the target dead? {}", target.isAlive());
             if (shouldDie && target.isAlive()) {
                 target.hurtServer(level, bleeding, Float.MAX_VALUE);
                 targetDied = true;
@@ -132,9 +145,9 @@ public class BloodPiercerItem extends Item {
             } else if (target.isAlive()) {
                 target.hurtServer(level, bleeding, adjustedPierceDamage);
             }
-        }
-        if (!attacker.level().isClientSide()) {
-            playOverHitSound(target, attacker);
+            if(this.isEnabled){
+                playOverHitSound(target, attacker);
+            }
             handlePostAttackChanges(attacker, target, targetDied);
         }
     }
@@ -162,7 +175,7 @@ public class BloodPiercerItem extends Item {
         tooltip.accept(Component.literal("§6Ability: Dangerous Dagger§r"));
         tooltip.accept(Component.literal("§7Every §a1%§7 of the attacker's missing health and §a1%§7 of the target's missing health deals §a+1%§7 damage.§r"));
         tooltip.accept(Component.literal(""));
-        if (hasDiscoveredSecretAbility) {
+        if (hasDiscoveredSecretAbility && this.isEnabled) {
             tooltip.accept(Component.literal("§6Secret Ability: The Bloody Past§r §e§lHIT, RIGHT CLICK§r"));
             tooltip.accept(Component.literal("§7Hitting any target with Hazel in any parts of its name kills it immediately!!§r"));
             tooltip.accept(Component.literal("§7Your rage is calmed upon taming from slaying a Hazel, healing you back to full health.§r"));
@@ -211,20 +224,20 @@ public class BloodPiercerItem extends Item {
         }
     }
 
-    private void playNormalAttackSound(Entity entity, Player user) {
+    private void playNormalAttackSound(ServerLevel level, Entity entity, Player user) {
         if (entity.getName().getString().toLowerCase().contains("hazel")) {
             hasDiscoveredSecretAbility = true;
-            user.playSound(SoundEvents.WARDEN_SONIC_CHARGE, 1, 1);
-            user.playSound(SoundEvents.WARDEN_SONIC_BOOM, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.WARDEN_SONIC_CHARGE, SoundSource.PLAYERS, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 1, 1);
         } else if (user.getHealth() / user.getMaxHealth() <= 0.2) {
-            user.playSound(SoundEvents.SPEAR_HIT.value(), 1, 1);
-            user.playSound(SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.SPEAR_HIT.value(), SoundSource.PLAYERS, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR, SoundSource.PLAYERS, 1, 1);
         } else if (user.getHealth() / user.getMaxHealth() <= 0.5) {
-            user.playSound(SoundEvents.SPEAR_HIT.value(), 1, 1);
-            user.playSound(SoundEvents.WOLF_ARMOR_DAMAGE, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.SPEAR_HIT.value(), SoundSource.PLAYERS, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.WOLF_ARMOR_DAMAGE, SoundSource.PLAYERS, 1, 1);
         } else {
-            user.playSound(SoundEvents.SPEAR_HIT.value(), 1, 1);
-            user.playSound(SoundEvents.AXE_STRIP, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.SPEAR_HIT.value(), SoundSource.PLAYERS, 1, 1);
+            level.playSound(null, entity.getOnPos(), SoundEvents.AXE_STRIP, SoundSource.PLAYERS, 1, 1);
         }
     }
 
@@ -240,11 +253,12 @@ public class BloodPiercerItem extends Item {
         }
     }
 
-    private void useRightClickAbility(ServerLevel level, Player user, LivingEntity entity, float adjustedPierceDamage) {
+    private void useRightClickAbility(ServerLevel level, ServerPlayer user, LivingEntity entity, float adjustedPierceDamage) {
         DamageSource bleeding = entity.damageSources().source(ModDamageTypes.BLEEDING, user);
-        if (entity.getName().getString().toLowerCase().contains("hazel")) {
+        if (entity.getName().getString().toLowerCase().contains("hazel") && this.isEnabled) {
             user.heal(Float.MAX_VALUE);
             entity.hurtServer(level, bleeding, Float.MAX_VALUE);
+            shake(user);
         } else if (user.getHealth() / user.getMaxHealth() <= 0.2) {
             entity.hurtServer(level, bleeding, Float.MAX_VALUE);
             user.hurtServer(level, bleeding, Float.MAX_VALUE);
@@ -278,5 +292,9 @@ public class BloodPiercerItem extends Item {
                 entity.hurtServer(level, bleeding, Float.MAX_VALUE);
             }
         }
+    }
+
+    private void shake(ServerPlayer player) {
+        PacketDistributor.sendToPlayer(player, new CameraShakePacketS2C(5f, 3f, 5f, 10));
     }
 }

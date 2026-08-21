@@ -29,14 +29,10 @@ public class RuleMaster {
     public RuleMaster(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
-//        ModEntityTypes.register(modEventBus);
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-        ModDataComponents.register(modEventBus);
-        ModEffects.register(modEventBus);
-        ModItemGroups.register(modEventBus);
-        ModAttachments.register(modEventBus);
-        ModBlockEntities.register(modEventBus);
+        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
+        modContainer.registerConfig(ModConfig.Type.COMMON, RuleMasterConfig.COMMON);
+
+        registerModFunctionalities(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (RuleMaster) to respond directly to events.
@@ -45,9 +41,16 @@ public class RuleMaster {
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+    }
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, RuleMasterConfig.SPEC);
+    private void registerModFunctionalities(IEventBus modEventBus) {
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModDataComponents.register(modEventBus);
+        ModEffects.register(modEventBus);
+        ModItemGroups.register(modEventBus);
+        ModAttachments.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {}
