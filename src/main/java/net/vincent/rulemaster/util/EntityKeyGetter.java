@@ -6,6 +6,6 @@ import net.minecraft.world.entity.EntityType;
 
 public class EntityKeyGetter {
     public static ResourceKey<EntityType<?>> getRK(EntityType<?> entityType) {
-        return BuiltInRegistries.ENTITY_TYPE.getResourceKey(entityType).get();
+        return BuiltInRegistries.ENTITY_TYPE.getResourceKey(entityType).orElseThrow();
     }
 }

@@ -53,6 +53,7 @@ public class ModItems {
 
     public static ResourceKey<Item> getRK(Item item) {
         return BuiltInRegistries.ITEM.getResourceKey(item).orElseThrow();
+        // This is the registry, so all items should be present in the list of the registry
     }
 
     public static ResourceKey<Item> getRK(DeferredItem<Item> item) {

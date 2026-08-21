@@ -49,6 +49,6 @@ public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
     }
 
     protected ResourceKey<EntityType<?>> getRK(EntityType<?> entityType){
-        return BuiltInRegistries.ENTITY_TYPE.getResourceKey(entityType).get();
+        return BuiltInRegistries.ENTITY_TYPE.getResourceKey(entityType).orElseThrow();
     }
 }

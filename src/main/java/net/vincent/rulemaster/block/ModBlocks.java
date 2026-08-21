@@ -115,11 +115,11 @@ public class ModBlocks {
     }
 
     public static ResourceKey<Block> getRK(Block block) {
-        return BuiltInRegistries.BLOCK.getResourceKey(block).get();
+        return BuiltInRegistries.BLOCK.getResourceKey(block).orElseThrow();
     }
 
     public static ResourceKey<Block> getRK(DeferredBlock<Block> block) {
-        return BuiltInRegistries.BLOCK.getResourceKey(block.get()).get();
+        return getRK(block.get());
     }
 
     public static void register(IEventBus bus) {
