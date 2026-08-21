@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.vincent.rulemaster.attachments.ModAttachments;
-import net.vincent.rulemaster.datagen.datapack.damage.ModDamageTypes;
+import net.vincent.rulemaster.datagen.datapack.ModDamageTypes;
 import net.vincent.rulemaster.tags.ModTags;
 
 import java.util.List;

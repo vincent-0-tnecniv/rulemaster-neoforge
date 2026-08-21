@@ -6,7 +6,6 @@
 
 package net.vincent.rulemaster.util.datagen;
 
-import net.vincent.rulemaster.RuleMaster;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -21,6 +20,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
+import net.vincent.rulemaster.RuleMaster;
 
 import javax.annotation.Nullable;
 import java.util.List;

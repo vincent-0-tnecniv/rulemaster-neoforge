@@ -1,4 +1,4 @@
-package net.vincent.rulemaster.datagen.datapack.damage;
+package net.vincent.rulemaster.datagen.datapack;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

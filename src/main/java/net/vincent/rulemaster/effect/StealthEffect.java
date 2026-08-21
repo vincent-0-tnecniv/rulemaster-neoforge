@@ -1,11 +1,9 @@
 package net.vincent.rulemaster.effect;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 
 public class StealthEffect extends MobEffect {
 

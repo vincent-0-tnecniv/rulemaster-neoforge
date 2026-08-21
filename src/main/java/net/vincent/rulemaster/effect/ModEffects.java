@@ -1,7 +1,6 @@
 package net.vincent.rulemaster.effect;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
@@ -16,8 +15,6 @@ public class ModEffects {
 
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, RuleMaster.MOD_ID);
-
-
 
     public static final Holder<MobEffect> STEALTH = MOB_EFFECTS.register("stealth",
             () -> new StealthEffect(MobEffectCategory.BENEFICIAL, 0x000000)

@@ -7,7 +7,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -30,7 +29,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-public abstract class BaseGlobalLootModifierProvider extends GlobalLootModifierProvider {
+public abstract class BaseGlobalLootModifierProvider extends GlobalLootModifierProvider implements IEntityMethodProvider {
     public BaseGlobalLootModifierProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, String modid) {
         super(output, registries, modid);
     }
@@ -90,14 +89,6 @@ public abstract class BaseGlobalLootModifierProvider extends GlobalLootModifierP
 
     private LootItemCondition[] createBlockConditions(List<Block> blocks) {
         return new LootItemCondition[] {AnyOfCondition.anyOf(blocks.stream().map(LootItemBlockStatePropertyCondition::hasBlockStateProperties).toArray(LootItemBlockStatePropertyCondition.Builder[]::new)).build()};
-    }
-
-    public static List<EntityType<?>> getEntityTypesFromTag(HolderLookup.Provider provider, TagKey<EntityType<?>> tagKey) {
-        var lookup = provider.lookupOrThrow(Registries.ENTITY_TYPE);
-        var holders = lookup.getOrThrow(tagKey);
-        return holders.stream()
-                .map(Holder::value)
-                .collect(Collectors.toList());
     }
 
     public static List<Block> getBlocksFromTag(TagKey<Block> tagKey) {

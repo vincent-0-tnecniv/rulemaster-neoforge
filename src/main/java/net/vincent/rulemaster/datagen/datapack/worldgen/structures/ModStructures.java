@@ -1,4 +1,4 @@
-package net.vincent.rulemaster.datagen.structure.structures;
+package net.vincent.rulemaster.datagen.datapack.worldgen.structures;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;

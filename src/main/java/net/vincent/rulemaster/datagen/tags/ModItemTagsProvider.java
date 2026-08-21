@@ -1,15 +1,12 @@
 package net.vincent.rulemaster.datagen.tags;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.item.ModItems;
 import net.vincent.rulemaster.tags.ModTags;
 import net.vincent.rulemaster.util.datagen.BaseItemTagsProvider;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Items;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagsProvider extends BaseItemTagsProvider {

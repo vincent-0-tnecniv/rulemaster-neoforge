@@ -11,14 +11,12 @@ import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.properties.conditional.HasComponent;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -27,14 +25,14 @@ import net.vincent.rulemaster.block.ModBlocks;
 import net.vincent.rulemaster.block.custom.FleshBlock;
 import net.vincent.rulemaster.data.ModDataComponents;
 import net.vincent.rulemaster.item.ModItems;
-import net.vincent.rulemaster.util.ModMaterialHelper;
+import net.vincent.rulemaster.util.IModMaterialHelper;
 import net.vincent.rulemaster.util.datagen.FixedBlockModelGenerators;
 import net.vincent.rulemaster.util.datagen.FixedItemModelGenerators;
 import net.vincent.rulemaster.util.datagen.FixedModelProvider;
 
 import java.util.Optional;
 
-public class ModModelProvider extends FixedModelProvider {
+public class ModModelProvider extends FixedModelProvider implements IModMaterialHelper {
     public ModModelProvider(PackOutput output) {
         super(output, RuleMaster.MOD_ID);
     }
@@ -56,7 +54,7 @@ public class ModModelProvider extends FixedModelProvider {
                 .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_bottom"))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_top"))
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(ModBlocks.LIFE_FUSED_BLOCK.get(), "_side"))
-                .put(TextureSlot.PARTICLE, ModMaterialHelper.NONE);
+                .put(TextureSlot.PARTICLE, NONE);
         Identifier model = ModelTemplates.CUBE_BOTTOM_TOP.create(ModBlocks.LIFE_FUSED_BLOCK.get(),
                 mapping, blockModels.modelOutput);
 //        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.LIFE_FUSED_BLOCK.get()).with(PropertyDispatch.initial(BlockStateProperties.CANDLES).generate((_) -> plainVariant(chargeLevelModels))));

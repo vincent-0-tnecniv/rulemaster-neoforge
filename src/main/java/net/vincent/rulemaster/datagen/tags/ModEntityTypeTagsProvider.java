@@ -1,19 +1,18 @@
 package net.vincent.rulemaster.datagen.tags;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityTypes;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.tags.ModTags;
+import net.vincent.rulemaster.util.datagen.IEntityMethodProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
+public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> implements IEntityMethodProvider {
     public ModEntityTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, Registries.ENTITY_TYPE, lookupProvider, RuleMaster.MOD_ID);
     }
@@ -46,9 +45,5 @@ public class ModEntityTypeTagsProvider extends TagsProvider<EntityType<?>> {
                 .addTag(ModTags.EntityTypes.LIVING_HUMANOID)
                 .remove(ModTags.EntityTypes.BLOOD_INFUSED_HUMANOID)
                 .remove(getRK(EntityTypes.PLAYER));
-    }
-
-    protected ResourceKey<EntityType<?>> getRK(EntityType<?> entityType){
-        return BuiltInRegistries.ENTITY_TYPE.getResourceKey(entityType).orElseThrow();
     }
 }

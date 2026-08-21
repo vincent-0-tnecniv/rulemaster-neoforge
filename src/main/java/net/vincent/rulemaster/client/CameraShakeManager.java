@@ -1,6 +1,7 @@
 package net.vincent.rulemaster.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.Vec3;
@@ -39,6 +40,9 @@ public class CameraShakeManager {
         float currentIntensityX = shakeIntensityX * decayFactor;
         float currentIntensityY = shakeIntensityY * decayFactor;
         float currentIntensityZ = shakeIntensityZ * decayFactor;
+
+        ClientLevel level = Minecraft.getInstance().level;
+        if(level == null) return Vec3.ZERO;
 
         double time = Minecraft.getInstance().level.getGameTime() + partialTicks;
         double randomX = Math.sin(time * 37.7 + 1.3) * 0.7 + Math.cos(time * 53.3 + 0.7) * 0.3;

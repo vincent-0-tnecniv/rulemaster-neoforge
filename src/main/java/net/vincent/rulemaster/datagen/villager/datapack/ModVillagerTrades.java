@@ -43,7 +43,7 @@ public class ModVillagerTrades {
     public static void bootstrap(BootstrapContext<VillagerTrade> context){
 
         HolderGetter<Item> items = context.lookup(Registries.ITEM);
-        HolderGetter<Enchantment> enchantments = context.lookup(Registries.ENCHANTMENT);
+//        HolderGetter<Enchantment> enchantments = context.lookup(Registries.ENCHANTMENT);
 
         context.register(CLERIC_1_ROTTEN_FLESH_BLOOD_CRYSTAL, new VillagerTrade(
                 new TradeCost(Items.ROTTEN_FLESH, 20),
@@ -89,6 +89,7 @@ public class ModVillagerTrades {
         return VillagerTrades.enchantedBook(context.lookup(Registries.ITEM), HolderSet.direct(context.lookup(Registries.ENCHANTMENT).getOrThrow(enchantment)));
     }
 
+    @SafeVarargs
     protected static List<LootItemFunction> enchantedBook(BootstrapContext<VillagerTrade> context, ResourceKey<Enchantment>... enchantments) {
         var enchantmentsList = context.lookup(Registries.ENCHANTMENT);
         List<Holder<Enchantment>> holder = new ArrayList<>();

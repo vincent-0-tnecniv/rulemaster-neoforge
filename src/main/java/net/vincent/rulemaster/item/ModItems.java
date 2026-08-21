@@ -1,7 +1,6 @@
 package net.vincent.rulemaster.item;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -18,7 +17,6 @@ import net.vincent.rulemaster.item.custom.LocatorEyeItem;
 import net.vincent.rulemaster.item.custom.written_books.LivoGuideBookItem;
 import net.vincent.rulemaster.tags.ModTags;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 
 public class ModItems {

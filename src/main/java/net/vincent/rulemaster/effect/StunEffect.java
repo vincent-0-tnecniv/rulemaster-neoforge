@@ -19,8 +19,8 @@ public class StunEffect extends MobEffect {
         if(entity instanceof Mob mob){
             mob.setTarget(null);
             mob.setLastHurtByMob(null);
-            if(mob instanceof ZombifiedPiglin piggie){
-                piggie.setTimeToRemainAngry(0);
+            if(mob instanceof ZombifiedPiglin zombifiedPiglin){
+                zombifiedPiglin.setTimeToRemainAngry(0);
             }
             float entityPostYaw = entity.getYRot() + 15.0F * (amplifier + 1);
             if(entityPostYaw > 180.0F){
@@ -46,8 +46,8 @@ public class StunEffect extends MobEffect {
         if(entity instanceof Mob mob){
             mob.setTarget(null);
             mob.setLastHurtByMob(null);
-            if(mob instanceof ZombifiedPiglin piggie){
-                piggie.setTimeToRemainAngry(0);
+            if(mob instanceof ZombifiedPiglin zombifiedPiglin){
+                zombifiedPiglin.setTimeToRemainAngry(0);
             }
         }
     }

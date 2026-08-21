@@ -23,7 +23,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import net.vincent.rulemaster.client.CameraShakeManager;
 import net.vincent.rulemaster.data.ModDataComponents;
-import net.vincent.rulemaster.datagen.datapack.damage.ModDamageTypes;
+import net.vincent.rulemaster.datagen.datapack.ModDamageTypes;
 import net.vincent.rulemaster.effect.ModEffects;
 import net.vincent.rulemaster.item.ModToolMaterials;
 import org.jspecify.annotations.NonNull;

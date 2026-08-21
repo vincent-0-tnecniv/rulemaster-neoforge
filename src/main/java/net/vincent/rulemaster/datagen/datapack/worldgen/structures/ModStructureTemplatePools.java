@@ -1,15 +1,13 @@
-package net.vincent.rulemaster.datagen.structure.structures;
+package net.vincent.rulemaster.datagen.datapack.worldgen.structures;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.ProcessorLists;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.vincent.rulemaster.RuleMaster;
 
 import java.util.List;
@@ -20,7 +18,7 @@ public class ModStructureTemplatePools {
 
     public static void bootstrap(BootstrapContext<StructureTemplatePool> context) {
         HolderGetter<StructureTemplatePool> poolLookup = context.lookup(Registries.TEMPLATE_POOL);
-        var processorLookup = context.lookup(Registries.PROCESSOR_LIST);
+//        HolderGetter<StructureProcessorList> processorLookup = context.lookup(Registries.PROCESSOR_LIST);
 
         var emptyPool = poolLookup.getOrThrow(ResourceKey.create(Registries.TEMPLATE_POOL,
                 Identifier.withDefaultNamespace("empty")));

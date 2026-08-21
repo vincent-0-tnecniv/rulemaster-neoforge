@@ -31,6 +31,8 @@ public class CoreOfWombBlockEntity extends BlockEntity {
             return;
             // no logic added for now
         }
+        Object _ = blockState;
+        Object _ = blockEntity;
         ServerLevel serverLevel = (ServerLevel) level;
         AABB summoningArea = new AABB(blockPos).inflate(8);
         List<Entity> entities = serverLevel.getEntities(null, summoningArea);

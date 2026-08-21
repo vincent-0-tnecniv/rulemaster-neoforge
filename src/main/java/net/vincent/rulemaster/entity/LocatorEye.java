@@ -23,17 +23,15 @@ import java.util.function.Supplier;
 
 public class LocatorEye extends Entity {
 
-    private static final float MIN_CAMERA_DISTANCE_SQUARED = 12.25F;
-    private static final float TOO_FAR_SIGNAL_HEIGHT = 8.0F;
-    private static final float TOO_FAR_DISTANCE = 12.0F;
+//    private static final float MIN_CAMERA_DISTANCE_SQUARED = 12.25F;
+//    private static final float TOO_FAR_SIGNAL_HEIGHT = 8.0F;
+//    private static final float TOO_FAR_DISTANCE = 12.0F;
     private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK;
     private @Nullable Vec3 target;
     private int life;
-    private boolean surviveAfterDeath;
     private final Supplier<Item> supplier;
 
     public LocatorEye(EntityType<? extends EyeOfEnder> type, Level level, Supplier<Item> supplier) {
-        this.surviveAfterDeath = false;
         this.supplier = supplier;
         super(type, level);
     }
@@ -78,7 +76,7 @@ public class LocatorEye extends Entity {
         Vec3 delta = target.subtract(this.position());
         double horizontalDistance = delta.horizontalDistance();
         if (horizontalDistance > (double)12.0F) {
-            this.target = this.position().add(delta.x / horizontalDistance * (double)12.0F, (double)8.0F, delta.z / horizontalDistance * (double)12.0F);
+            this.target = this.position().add(delta.x / horizontalDistance * (double)12.0F, 8.0F, delta.z / horizontalDistance * (double)12.0F);
         } else {
             this.target = target;
         }
@@ -94,7 +92,7 @@ public class LocatorEye extends Entity {
         }
 
         if (this.level().isClientSide()) {
-            Vec3 particleOrigin = newPosition.subtract(this.getDeltaMovement().scale((double)0.25F));
+            Vec3 particleOrigin = newPosition.subtract(this.getDeltaMovement().scale(0.25F));
             this.spawnParticles(particleOrigin, this.getDeltaMovement());
         }
 
@@ -119,7 +117,7 @@ public class LocatorEye extends Entity {
     }
 
     private static Vec3 updateDeltaMovement(Vec3 oldMovement, Vec3 position, Vec3 target) {
-        Vec3 horizontalDelta = new Vec3(target.x - position.x, (double)0.0F, target.z - position.z);
+        Vec3 horizontalDelta = new Vec3(target.x - position.x, 0.0F, target.z - position.z);
         double horizontalLength = horizontalDelta.length();
         double wantedSpeed = Mth.lerp(0.0025, oldMovement.horizontalDistance(), horizontalLength);
         double movementY = oldMovement.y;
@@ -129,7 +127,7 @@ public class LocatorEye extends Entity {
         }
 
         double wantedMovementY = position.y - oldMovement.y < target.y ? (double)1.0F : (double)-1.0F;
-        return horizontalDelta.scale(wantedSpeed / horizontalLength).add((double)0.0F, movementY + (wantedMovementY - movementY) * 0.015, (double)0.0F);
+        return horizontalDelta.scale(wantedSpeed / horizontalLength).add(0.0F, movementY + (wantedMovementY - movementY) * 0.015, 0.0F);
     }
 
     protected void addAdditionalSaveData(ValueOutput output) {
@@ -137,7 +135,7 @@ public class LocatorEye extends Entity {
     }
 
     protected void readAdditionalSaveData(ValueInput input) {
-        this.setItem((ItemStack)input.read("Item", ItemStack.CODEC).orElse(this.getDefaultItem()));
+        this.setItem(input.read("Item", ItemStack.CODEC).orElse(this.getDefaultItem()));
     }
 
     private ItemStack getDefaultItem() {
@@ -158,13 +156,5 @@ public class LocatorEye extends Entity {
 
     static {
         DATA_ITEM_STACK = SynchedEntityData.defineId(LocatorEye.class, EntityDataSerializers.ITEM_STACK);
-    }
-
-    public boolean getSurviveAfterDeath() {
-        return this.surviveAfterDeath;
-    }
-
-    public void setSurviveAfterDeath(boolean surviveAfterDeath) {
-        this.surviveAfterDeath = surviveAfterDeath;
     }
 }

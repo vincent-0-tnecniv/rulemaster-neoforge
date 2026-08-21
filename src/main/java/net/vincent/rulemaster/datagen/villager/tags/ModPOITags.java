@@ -4,7 +4,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.PoiTypeTagsProvider;
-import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.tags.TagEntry;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.vincent.rulemaster.RuleMaster;
@@ -24,6 +23,6 @@ public class ModPOITags extends PoiTypeTagsProvider {
     }
 
     protected TagEntry convert(Holder<PoiType> profession) {
-        return TagEntry.element(profession.unwrapKey().get().identifier());
+        return TagEntry.element(profession.unwrapKey().orElseThrow().identifier());
     }
 }

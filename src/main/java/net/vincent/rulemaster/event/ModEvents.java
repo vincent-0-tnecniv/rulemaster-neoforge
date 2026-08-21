@@ -125,10 +125,10 @@ public class ModEvents {
             boolean shouldRespawnInEnd = serverPlayer.getData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END);
             BlockPos respawnPos = serverPlayer.getData(ModAttachments.PLAYER_END_SPAWN_POS);
             if (shouldRespawnInEnd) {
-                boolean shouldRefunedGlowstone = false;
+                boolean shouldRefundGlowstone = false;
                 if(playerCurrentLevel.dimension() == Level.NETHER){
                     // Player would have used up a glowstone to respawn in the nether to tp to the end - refund a glowstone
-                    shouldRefunedGlowstone = true;
+                    shouldRefundGlowstone = true;
                     player.sendSystemMessage(Component.translatable("message.rulemaster.nether_respawn_using_glowstone_refunded_0"));
                     player.sendSystemMessage(Component.translatable("message.rulemaster.nether_respawn_using_glowstone_refunded_1"));
                 }
@@ -144,7 +144,7 @@ public class ModEvents {
                             serverPlayer.getXRot(),
                             false
                     );
-                    if(shouldRefunedGlowstone){
+                    if(shouldRefundGlowstone){
                         ItemEntity itemEntity = new ItemEntity(
                                 serverPlayer.level(),
                                 respawnPos.getX() + 0.5,

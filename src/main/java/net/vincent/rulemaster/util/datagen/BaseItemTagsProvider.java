@@ -107,15 +107,16 @@ public abstract class BaseItemTagsProvider extends ItemTagsProvider {
         for(Object obj : items) {
             if(obj instanceof Item item) {
                 spear(item);
-            } else {
-                try{
-                    DeferredItem<Item> deferredItem = (DeferredItem<Item>) obj;
-                    spear(deferredItem.get());
-                } catch(ClassCastException e) {
-                    throw new ClassCastException("Cannot cast " + obj + " to DeferredItem<Item>");
-                }
-
+                continue;
             }
+            if(obj instanceof DeferredItem<?> deferredItem) {
+                Object val = deferredItem.get();
+                if(val instanceof Item item) {
+                    spear(item);
+                    continue;
+                }
+            }
+            throw new IllegalStateException("Cannot create a spear item with type " + obj.getClass());
         }
     }
 
@@ -128,17 +129,19 @@ public abstract class BaseItemTagsProvider extends ItemTagsProvider {
     }
 
     protected void pickaxe(List<?> items) {
-        for(Object obj : items) {
-            if(obj instanceof Item item) {
+        for (Object obj : items) {
+            if (obj instanceof Item item) {
                 pickaxe(item);
-            } else {
-                try{
-                    DeferredItem<Item> deferredItem = (DeferredItem<Item>) obj;
-                    tag(ItemTags.PICKAXES).add(ModItems.getRK(deferredItem.get()));
-                } catch(ClassCastException e) {
-                    throw new ClassCastException("Cannot cast " + obj + " to DeferredItem<Item>");
+                continue;
+            }
+            if (obj instanceof DeferredItem<?> deferredItem) {
+                Object val = deferredItem.get();
+                if (val instanceof Item item) {
+                    pickaxe(item);
+                    continue;
                 }
             }
+            throw new IllegalStateException("Cannot create a pickaxe item with type " + obj.getClass());
         }
     }
 
@@ -151,17 +154,19 @@ public abstract class BaseItemTagsProvider extends ItemTagsProvider {
     }
 
     protected void sword(List<?> items) {
-        for(Object obj : items) {
-            if(obj instanceof Item item) {
+        for (Object obj : items) {
+            if (obj instanceof Item item) {
                 sword(item);
-            } else {
-                try{
-                    DeferredItem<Item> deferredItem = (DeferredItem<Item>) obj;
-                    tag(ItemTags.SWORDS).add(ModItems.getRK(deferredItem.get()));
-                } catch(ClassCastException e) {
-                    throw new ClassCastException("Cannot cast " + obj + " to DeferredItem<Item>");
+                continue;
+            }
+            if (obj instanceof DeferredItem<?> deferredItem) {
+                Object val = deferredItem.get();
+                if (val instanceof Item item) {
+                    sword(item);
+                    continue;
                 }
             }
+            throw new IllegalStateException("Cannot create a sword item with type " + obj.getClass());
         }
     }
 
@@ -174,17 +179,19 @@ public abstract class BaseItemTagsProvider extends ItemTagsProvider {
     }
 
     protected void axe(List<?> items) {
-        for(Object obj : items) {
-            if(obj instanceof Item item) {
+        for (Object obj : items) {
+            if (obj instanceof Item item) {
                 axe(item);
-            } else {
-                try{
-                    DeferredItem<Item> deferredItem = (DeferredItem<Item>) obj;
-                    tag(ItemTags.AXES).add(ModItems.getRK(deferredItem.get()));
-                } catch(ClassCastException e) {
-                    throw new ClassCastException("Cannot cast " + obj + " to DeferredItem<Item>");
+                continue;
+            }
+            if (obj instanceof DeferredItem<?> deferredItem) {
+                Object val = deferredItem.get();
+                if (val instanceof Item item) {
+                    axe(item);
+                    continue;
                 }
             }
+            throw new IllegalStateException("Cannot create an axe item with type " + obj.getClass());
         }
     }
 
@@ -197,17 +204,19 @@ public abstract class BaseItemTagsProvider extends ItemTagsProvider {
     }
 
     protected void shovel(List<?> items) {
-        for(Object obj : items) {
-            if(obj instanceof Item item) {
+        for (Object obj : items) {
+            if (obj instanceof Item item) {
                 shovel(item);
-            } else {
-                try{
-                    DeferredItem<Item> deferredItem = (DeferredItem<Item>) obj;
-                    tag(ItemTags.SHOVELS).add(ModItems.getRK(deferredItem.get()));
-                } catch(ClassCastException e) {
-                    throw new ClassCastException("Cannot cast " + obj + " to DeferredItem<Item>");
+                continue;
+            }
+            if (obj instanceof DeferredItem<?> deferredItem) {
+                Object val = deferredItem.get();
+                if (val instanceof Item item) {
+                    shovel(item);
+                    continue;
                 }
             }
+            throw new IllegalStateException("Cannot create a shovel item with type " + obj.getClass());
         }
     }
 
@@ -220,17 +229,19 @@ public abstract class BaseItemTagsProvider extends ItemTagsProvider {
     }
 
     protected void hoe(List<?> items) {
-        for(Object obj : items) {
-            if(obj instanceof Item item) {
+        for (Object obj : items) {
+            if (obj instanceof Item item) {
                 hoe(item);
-            } else {
-                try{
-                    DeferredItem<Item> deferredItem = (DeferredItem<Item>) obj;
-                    tag(ItemTags.HOES).add(ModItems.getRK(deferredItem.get()));
-                } catch(ClassCastException e) {
-                    throw new ClassCastException("Cannot cast " + obj + " to DeferredItem<Item>");
+                continue;
+            }
+            if (obj instanceof DeferredItem<?> deferredItem) {
+                Object val = deferredItem.get();
+                if (val instanceof Item item) {
+                    hoe(item);
+                    continue;
                 }
             }
+            throw new IllegalStateException("Cannot create a hoe item with type " + obj.getClass());
         }
     }
 

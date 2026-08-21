@@ -1,6 +1,5 @@
 package net.vincent.rulemaster.datagen.villager.datapack;
 
-import net.vincent.rulemaster.RuleMaster;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -11,7 +10,7 @@ import net.minecraft.world.item.trading.TradeSet;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
-import net.vincent.rulemaster.tags.ModTags;
+import net.vincent.rulemaster.RuleMaster;
 
 import java.util.Optional;
 

@@ -1,6 +1,7 @@
 package net.vincent.rulemaster.datagen.tags;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -50,17 +51,14 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     // Use these methods for any adding of vanilla blocks
 
     protected void addToTag(TagKey<Block> tag, Block block) {
-        ResourceKey<Block> key = block.builtInRegistryHolder().getKey();
-        if(key == null) {
-            throw new NullPointerException(block.getDescriptionId() + " not found in registry");
-        }
+        ResourceKey<Block> key = BuiltInRegistries.BLOCK.getResourceKey(block).orElseThrow();
         tag(tag).add(key);
     }
 
     protected void addToTag(TagKey<Block> tag, List<Block> blocks) {
         for(Block block : blocks) {
-            if(block.builtInRegistryHolder().getKey() == null) {
-                throw new NullPointerException(block.getDescriptionId() + " not found in registry");
+            if(BuiltInRegistries.BLOCK.getResourceKey(block).isEmpty()) {
+                throw new IllegalStateException(block.getName() + " not found in BuiltInRegistries");
             }
             addToTag(tag, block);
         }

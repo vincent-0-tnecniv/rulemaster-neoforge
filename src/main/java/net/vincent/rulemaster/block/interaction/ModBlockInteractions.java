@@ -7,7 +7,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -61,6 +60,6 @@ public class ModBlockInteractions {
                 // Or use slime particles for green drips
                 // level.addParticle(ParticleTypes.ITEM_SLIME, x, y, z, 0.0D, 0.0D, 0.0D);
             }
-        };
+        }
     }
 }

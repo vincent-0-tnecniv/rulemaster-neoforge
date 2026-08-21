@@ -62,6 +62,7 @@ public class ModItemGroups {
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
+        RuleMaster.LOGGER.info("Registered creative tab: {}", RULEMASTER_TAB);
     }
 
     private static Supplier<CreativeModeTab> createTab(String tabId, ItemLike menuItem, String translationKey, ItemLike... items) {
