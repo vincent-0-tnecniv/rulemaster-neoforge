@@ -1,6 +1,7 @@
 package net.vincent.rulemaster.item;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -13,10 +14,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.item.custom.BloodPiercerItem;
 import net.vincent.rulemaster.item.custom.FleshBlockTestItem;
-import net.vincent.rulemaster.item.custom.written_books.LivoGuideBookItem;
 import net.vincent.rulemaster.item.custom.LocatorEyeItem;
+import net.vincent.rulemaster.item.custom.written_books.LivoGuideBookItem;
 import net.vincent.rulemaster.tags.ModTags;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class ModItems {
@@ -50,7 +52,11 @@ public class ModItems {
     // TODO: add a texture for it
 
     public static ResourceKey<Item> getRK(Item item) {
-        return BuiltInRegistries.ITEM.getResourceKey(item).get();
+        Optional<ResourceKey<Item>> tmp = BuiltInRegistries.ITEM.getResourceKey(item);
+        if(tmp.isEmpty()) {
+            throw new IllegalStateException("Item " + item + " does not exist");
+        }
+        return tmp.get();
     }
 
     public static ResourceKey<Item> getRK(DeferredItem<Item> item) {
