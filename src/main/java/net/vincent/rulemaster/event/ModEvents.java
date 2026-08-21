@@ -1,6 +1,5 @@
 package net.vincent.rulemaster.event;
 
-import com.electronwill.nightconfig.core.io.IoUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -30,8 +28,7 @@ import net.vincent.rulemaster.attachments.ModAttachments;
 import net.vincent.rulemaster.block.ModBlocks;
 import net.vincent.rulemaster.block.custom.FleshBlock;
 import net.vincent.rulemaster.command.ModCommands;
-import net.vincent.rulemaster.item.ModItems;
-import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
+import net.vincent.rulemaster.item.custom.written_books.LivoGuideBookItem;
 import net.vincent.rulemaster.tags.ModTags;
 
 import java.util.List;

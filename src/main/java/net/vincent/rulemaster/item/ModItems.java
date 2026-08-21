@@ -1,10 +1,8 @@
 package net.vincent.rulemaster.item;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -15,7 +13,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.item.custom.BloodPiercerItem;
 import net.vincent.rulemaster.item.custom.FleshBlockTestItem;
-import net.vincent.rulemaster.item.custom.LivoGuideBookItem;
+import net.vincent.rulemaster.item.custom.written_books.LivoGuideBookItem;
 import net.vincent.rulemaster.item.custom.LocatorEyeItem;
 import net.vincent.rulemaster.tags.ModTags;
 
