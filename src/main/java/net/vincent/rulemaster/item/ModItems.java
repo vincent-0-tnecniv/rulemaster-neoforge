@@ -52,11 +52,7 @@ public class ModItems {
     // TODO: add a texture for it
 
     public static ResourceKey<Item> getRK(Item item) {
-        Optional<ResourceKey<Item>> tmp = BuiltInRegistries.ITEM.getResourceKey(item);
-        if(tmp.isEmpty()) {
-            throw new IllegalStateException("Item " + item + " does not exist");
-        }
-        return tmp.get();
+        return BuiltInRegistries.ITEM.getResourceKey(item).orElseThrow();
     }
 
     public static ResourceKey<Item> getRK(DeferredItem<Item> item) {
