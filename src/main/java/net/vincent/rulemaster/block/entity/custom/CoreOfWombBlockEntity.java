@@ -26,7 +26,7 @@ public class CoreOfWombBlockEntity extends BlockEntity {
         super(ModBlockEntities.CORE_OF_WOMB_BE.get(), worldPosition, blockState);
     }
 
-    public static void tick(Level level, BlockPos blockPos, BlockState blockState, CoreOfWombBlockEntity blockEntity) {
+    public static void tick(Level level, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) {
         if(level.isClientSide()){
             return;
             // no logic added for now
