@@ -11,6 +11,9 @@ import net.vincent.rulemaster.RuleMaster;
 import java.util.function.Supplier;
 
 public class ModAttachments {
+
+    public static int DEFAULT_MAX_VITALITY = 100;
+
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENTS =
             DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, RuleMaster.MOD_ID);
 
@@ -28,6 +31,21 @@ public class ModAttachments {
 
     public static final Supplier<AttachmentType<BlockPos>> PLAYER_END_SPAWN_POS =
             register("player_end_spawn_pos", new BlockPos(0, 0, 0), BlockPos.CODEC);
+
+    public static final Supplier<AttachmentType<Boolean>> IS_VITALIY_OVERRIDING_HEALTH =
+            register("is_vitality_overriding_health", false, Codec.BOOL);
+
+    public static final Supplier<AttachmentType<Float>> VITALITY =
+            register("vitality", 100f, Codec.FLOAT);
+
+    public static final Supplier<AttachmentType<Integer>> MAXIMUM_VITALITY =
+            register("maximum_vitality", -1, Codec.INT);
+
+    public static final Supplier<AttachmentType<Float>> VITALITY_REGEN =
+            register("vitality_regen", 1.0f, Codec.FLOAT);
+
+    // -1 is used so that the player, when spawned, does not come with vitality
+    // vitality is a mechanic designed for the boss fight, it should be inapplicable in the casual gameplay
 
     // Use the register() method to create a new attachment.
     // Use by passing in the ID of the attachment, the default value of the attachment,

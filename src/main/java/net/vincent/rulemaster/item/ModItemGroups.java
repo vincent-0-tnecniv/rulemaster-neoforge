@@ -26,6 +26,7 @@ public class ModItemGroups {
             ModItems.LIVO_GUIDE_BOOK,
             ModItems.EYE_OF_BIRTH,
             ModItems.KEY_OF_EMBRYO,
+            ModItems.TOTEM_OF_REBORN,
 
             ModBlocks.FLESH_BLOCK,
             ModBlocks.FLESH_SLAB,

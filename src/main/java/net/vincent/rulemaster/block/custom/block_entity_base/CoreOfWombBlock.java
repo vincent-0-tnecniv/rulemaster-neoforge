@@ -1,4 +1,4 @@
-package net.vincent.rulemaster.block.custom;
+package net.vincent.rulemaster.block.custom.block_entity_base;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;

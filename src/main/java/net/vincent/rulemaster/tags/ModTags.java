@@ -26,8 +26,8 @@ public class ModTags {
     public static class Items {
 
         public static TagKey<Item> BLOOD_CRYSTAL_REPAIRABLE = createTag("blood_crystal_repairable");
-
         public static TagKey<Item> MUCUS_DOOR_INFINITELY_OPENABLE = createTag("mucus_door_infinitely_openable");
+        public static TagKey<Item> VITALITY_TOGGLE = createTag("vitality_toggle");
 
         public static TagKey<Item> createTag(String name){
             return ItemTags.create(Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, name));

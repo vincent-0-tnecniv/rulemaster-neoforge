@@ -22,6 +22,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.block.custom.*;
+import net.vincent.rulemaster.block.custom.block_entity_base.CoreOfWombBlock;
 import net.vincent.rulemaster.block.interaction.ModBlockInteractions;
 import net.vincent.rulemaster.item.ModItems;
 

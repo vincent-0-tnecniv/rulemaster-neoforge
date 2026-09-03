@@ -14,6 +14,7 @@ import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.item.custom.BloodPiercerItem;
 import net.vincent.rulemaster.item.custom.FleshBlockTestItem;
 import net.vincent.rulemaster.item.custom.LocatorEyeItem;
+import net.vincent.rulemaster.item.custom.vitality_related.TotemOfRebornItem;
 import net.vincent.rulemaster.item.custom.written_books.LivoGuideBookItem;
 import net.vincent.rulemaster.tags.ModTags;
 
@@ -48,6 +49,9 @@ public class ModItems {
                 }
             });
     // TODO: add a texture for it
+
+    public static DeferredItem<Item> TOTEM_OF_REBORN = ITEMS.registerItem("totem_of_reborn",
+            TotemOfRebornItem::new);
 
     public static ResourceKey<Item> getRK(Item item) {
         return BuiltInRegistries.ITEM.getResourceKey(item).orElseThrow();

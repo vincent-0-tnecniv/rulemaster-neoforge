@@ -5,6 +5,8 @@
   "item.rulemaster.flesh_block_test_item": "Flesh Block Test Item",
   "item.rulemaster.eye_of_birth": "Eye of Birth",
   "item.rulemaster.key_of_embryo": "Key Of Embryo",
+  "item.rulemaster.totem_of_reborn": "Totem of Reborn",
+  "item.rulemaster.totem_of_reborn.tooltip": "Press %s to activate the vitality within you!",
 
   "item.rulemaster.locator_eye.no_tag": "This eye is not infused with the ability to find ANY structure...",
   "item.rulemaster.locator_eye.structure_not_found": "This eye cannot find anything nearby...",
@@ -49,5 +51,8 @@
   "block.rulemaster.life_fused_block.desc_1": "Sneak right click in The End to remove all temporary respawn points!",
   "block.rulemaster.life_fused_block.charge_use_warning": "Beware of your active respawn anchors! It might drain their uses!",
   "message.rulemaster.nether_respawn_using_glowstone_refunded_0": "The life-fused block drained a charge from your active respawn anchor!",
-  "message.rulemaster.nether_respawn_using_glowstone_refunded_1": "As such, you were refunded a glowstone!"
+  "message.rulemaster.nether_respawn_using_glowstone_refunded_1": "As such, you were refunded a glowstone!",
+
+  "key.rulemaster.totem_activation": "Activate Totem",
+  "key.category.rulemaster.rulemaster": "RuleMaster Key Binds"
 }

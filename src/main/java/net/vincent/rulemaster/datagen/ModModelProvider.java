@@ -103,6 +103,7 @@ public class ModModelProvider extends FixedModelProvider implements IModMaterial
         itemModels.generateFlatItem(ModItems.LIVO_GUIDE_BOOK.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.EYE_OF_BIRTH.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.KEY_OF_EMBRYO.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.TOTEM_OF_REBORN.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(ModItems.BLOOD_CRYSTAL_STAFF.get());
     }
