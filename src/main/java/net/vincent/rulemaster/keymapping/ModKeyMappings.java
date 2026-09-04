@@ -13,7 +13,13 @@ public class ModKeyMappings {
 
     public static final Lazy<KeyMapping> PRESS_TOTEM_ACTIVATION = Lazy.of(() -> KEY_MAPPING_TOTEM_ACTIVATION);
 
+    public static final KeyMapping KEY_MAPPING_VITALITY_SWAP = new KeyMapping("key.rulemaster.vitality_swap",
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_K, ModKeyMappingCategories.RULEMASTER_KEYMAPPING_CATEGORY);
+
+    public static final Lazy<KeyMapping> PRESS_VITALITY_SWAP = Lazy.of(() -> KEY_MAPPING_VITALITY_SWAP);
+
     public static void register(RegisterKeyMappingsEvent event) {
         event.register(KEY_MAPPING_TOTEM_ACTIVATION);
+        event.register(KEY_MAPPING_VITALITY_SWAP);
     }
 }

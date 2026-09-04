@@ -133,11 +133,11 @@ public class ModEvents {
 
             if (shouldRender(player)) {
                 guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, "vitality_bar_bg"),
-                        x - 92, y - 44, 85, 16);
+                        x - 92, y - 44, 84, 16);
 
                 if (renderProgress != 0.0f) {
                     guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.fromNamespaceAndPath(RuleMaster.MOD_ID, "vitality_bar_fill"),
-                            x - 87, y - 44, (int) (78 * renderProgress), 16);
+                            x - 87, y - 44, (int) (76 * renderProgress), 16);
                 }
             }
 

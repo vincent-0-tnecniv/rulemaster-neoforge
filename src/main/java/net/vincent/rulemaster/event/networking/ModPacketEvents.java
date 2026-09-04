@@ -15,6 +15,7 @@ import net.vincent.rulemaster.event.ModEvents;
 import net.vincent.rulemaster.networking.ClientPayloadHandler;
 import net.vincent.rulemaster.networking.packet.CameraShakePacketS2C;
 import net.vincent.rulemaster.networking.packet.VitalityActivationC2S;
+import net.vincent.rulemaster.networking.packet.VitalityHealthToggleC2S;
 
 @EventBusSubscriber(modid = RuleMaster.MOD_ID)
 public class ModPacketEvents {
@@ -25,6 +26,7 @@ public class ModPacketEvents {
 
         registrar.playToClient(CameraShakePacketS2C.TYPE, CameraShakePacketS2C.STREAM_CODEC, ClientPayloadHandler::handleCameraShakePacket);
         registrar.playToServer(VitalityActivationC2S.TYPE, VitalityActivationC2S.STREAM_CODEC, ClientPayloadHandler::handleVitalityActivationPacket);
+        registrar.playToServer(VitalityHealthToggleC2S.TYPE, VitalityHealthToggleC2S.STREAM_CODEC, ClientPayloadHandler::handleVitalityTogglePacket);
     }
 
     @SubscribeEvent
@@ -32,6 +34,7 @@ public class ModPacketEvents {
         Player player = event.getEntity();
         if(player.level().isClientSide()) return;
         if(ModEvents.hasRunOutOfVitality(player)) return; // disable vitality regen when out of
+        if(!player.getData(ModAttachments.IS_VITALIY_OVERRIDING_HEALTH)) return; // shouldn't regenerate vitality when using health
         if(player instanceof ServerPlayer serverPlayer) {
             serverPlayer.level().getServer().execute(() -> {
                 var regenRate = player.getData(ModAttachments.VITALITY_REGEN);

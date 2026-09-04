@@ -11,6 +11,7 @@ import net.vincent.rulemaster.attachments.ModAttachments;
 import net.vincent.rulemaster.networking.client.CameraShakeManager;
 import net.vincent.rulemaster.networking.packet.CameraShakePacketS2C;
 import net.vincent.rulemaster.networking.packet.VitalityActivationC2S;
+import net.vincent.rulemaster.networking.packet.VitalityHealthToggleC2S;
 
 // SERVER PACKETS TO CLIENT
 public class ClientPayloadHandler {
@@ -45,5 +46,14 @@ public class ClientPayloadHandler {
         player.setData(ModAttachments.VITALITY.get(), C2Spacket.startingVitality());
         player.setData(ModAttachments.MAXIMUM_VITALITY.get(), C2Spacket.maximumVitality());
         player.setData(ModAttachments.VITALITY_REGEN.get(), C2Spacket.vitalityRegen());
+    }
+
+    public static void handleVitalityTogglePacket(VitalityHealthToggleC2S C2Spacket, IPayloadContext context) {
+        var player = context.player();
+
+        player.playSound(SoundEvents.TRIAL_SPAWNER_EJECT_ITEM, 1.0f, 1.0f);
+
+        player.setData(ModAttachments.IS_VITALIY_OVERRIDING_HEALTH, !C2Spacket.isUsingVitality());
+        RuleMaster.LOGGER.info("Received a VitalityTogglePacketS2C, and set is_vitality_overriding_health to {}!", !C2Spacket.isUsingVitality());
     }
 }

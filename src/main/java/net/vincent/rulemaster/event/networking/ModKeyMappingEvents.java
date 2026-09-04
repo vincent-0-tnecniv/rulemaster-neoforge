@@ -14,6 +14,7 @@ import net.vincent.rulemaster.item.ModItems;
 import net.vincent.rulemaster.item.custom.vitality_related.TotemOfRebornItem;
 import net.vincent.rulemaster.keymapping.ModKeyMappings;
 import net.vincent.rulemaster.networking.packet.VitalityActivationC2S;
+import net.vincent.rulemaster.networking.packet.VitalityHealthToggleC2S;
 import net.vincent.rulemaster.tags.ModTags;
 
 @EventBusSubscriber(modid = RuleMaster.MOD_ID)
@@ -27,6 +28,15 @@ public class ModKeyMappingEvents {
             if(!localPlayer.getMainHandItem().is(ModTags.Items.VITALITY_TOGGLE)) return;
             activateVitality(localPlayer.getMainHandItem(), localPlayer);
         }
+        if(ModKeyMappings.PRESS_VITALITY_SWAP.get().consumeClick()) {
+            LocalPlayer localPlayer = Minecraft.getInstance().player;
+            if(localPlayer == null) return;
+            toggleVitality(localPlayer);
+        }
+    }
+
+    private static void toggleVitality(LocalPlayer localPlayer) {
+        ClientPacketDistributor.sendToServer(new VitalityHealthToggleC2S(localPlayer.getData(ModAttachments.IS_VITALIY_OVERRIDING_HEALTH)));
     }
 
     private static void activateVitality(ItemStack totem, LocalPlayer player) {

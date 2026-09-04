@@ -31,11 +31,11 @@ public class ModWrittenBookContents {
                         ).append(
                                 Component.literal("Abilities\n• ")
                         ).append(
-                                createPageLinkWithoutHover("Vitalia\n", 13, true)
+                                createPageLinkWithoutHover("Vitalia\n", 15, true)
                         ).append(
                                 Component.literal("• ")
                         ).append(
-                                createPageLinkWithoutHover("Livo\n\n", 19, true)
+                                createPageLinkWithoutHover("Livo\n\n", 21, true)
                         ).append(
                                 Component.literal("Click on the texts to go to the pages!")
                         )
@@ -165,6 +165,25 @@ public class ModWrittenBookContents {
                         )
                 ), // P12
                 Filterable.passThrough(
+                    Component.literal("§n§lThe Vitality System\n")
+                            .append("""
+                                    Totem of Reborn, a variant of the Totem of Undying, dominates the power to create a new life.
+                                    
+                                    Pressing the hotkey (default as J) converts the player to Vitality Mode.
+                                    
+                                    Vitality is the equivalent of Health,
+                                    """)
+                ), // P13
+                Filterable.passThrough(
+                        Component.literal(
+                                """
+                                but it regenerates without food.
+                                
+                                When taking damage in Vitality Mode, the player has their vitality reduced in place of health. However, vitality damage ignores invulnerability frames, and §4§linstantly kills\s
+                                """
+                        ).append(Component.literal("players running out of it!"))
+                ), // P14
+                Filterable.passThrough(
                         Component.literal(
                                 "§lABILITIES: VITALIA\n"
                         ).append(
@@ -180,7 +199,7 @@ public class ModWrittenBookContents {
                                         createPageLinkWithoutHover("Back", 1, true)
                                 )
                         )
-                ), // P13
+                ), // P15
                 Filterable.passThrough(
                         Component.literal(
                                 """
@@ -188,7 +207,7 @@ public class ModWrittenBookContents {
                                 
                                 The target's movements, jumps, and other actions are not affected.
                                 """)
-                ), // P14
+                ), // P16
                 Filterable.passThrough(
                         Component.literal("§n§lBlow Dust\n")
                                 .append(
@@ -199,7 +218,7 @@ public class ModWrittenBookContents {
                                 ).append(
                                         createPageLinkWithoutHover("here", 11, true)
                                 ).append(Component.literal("."))
-                ), // P15
+                ), // P17
                 Filterable.passThrough(
                         Component.literal("§n§lCore Skill: Offense and Defense\n")
                                 .append(
@@ -209,7 +228,7 @@ public class ModWrittenBookContents {
                                         A glowing crystal heart allows him to defend against most attacks, and gain a 70% damage reduction. During the defensive
                                         """
                                 )
-                ), // P16
+                ), // P18
                 Filterable.passThrough(
                         Component.literal(
                                 """
@@ -217,28 +236,40 @@ public class ModWrittenBookContents {
                                 
                                 When Vitalia is attacked in his defensive mode, he stuns his targets for 2 seconds and reflects 30% of the damage done to him.
                                 
-                                The reflected damage is not decreased by the reduced damage
+                                The reflected damage is not decreased by the reduced damage.
                                 """)
-                ), // P17
+                ), // P19
                 Filterable.passThrough(Component.literal("from Vitalia's defensive mode.")
-                ), // P18
+                ), // P20
                 Filterable.passThrough(
                         Component.literal("§lABILITIES: LIVO\n")
-                                .append("""
-                                            This part is yet to be added
-                                            I have way too much ideas that I need to organize them first :)
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            """)
+                                .append(Component.literal("§n§lEnergized Health\n")
+                                        .append(
+                                                Component.literal(
+                                                        """
+                                                        Livo disapproves those that lack vitality.
+                                                        
+                                                        Every attack from Livo deals §4§lINFINITE§0 damage to players not in Vitality Mode.
+                                                        
+                                                        Refer to the vitality system\s"""
+                                ))).append(
+                                        createPageLinkWithoutHover("here", 13, true)
+                                ).append(Component.literal("""
+                                        .
+                                        """))
                                 .append(
                                         createPageLinkWithoutHover("Back", 1, true)
                                 )
-                ) // P19
+                ), // P21
+                Filterable.passThrough(
+                        Component.literal(
+                                """
+                                More are yet to be added
+                                I have way too much ideas that I need to organize them first :)
+                                """
+                        )
+                ) // P22
+
         ), true);;
 
     }

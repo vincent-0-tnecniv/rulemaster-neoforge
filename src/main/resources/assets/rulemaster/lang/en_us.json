@@ -54,5 +54,6 @@
   "message.rulemaster.nether_respawn_using_glowstone_refunded_1": "As such, you were refunded a glowstone!",
 
   "key.rulemaster.totem_activation": "Activate Totem",
-  "key.category.rulemaster.rulemaster": "RuleMaster Key Binds"
+  "key.rulemaster.vitality_swap": "Toggle Vitality/Health",
+  "key.category.minecraft.rulemaster.rulemaster": "RuleMaster Key Binds"
 }
