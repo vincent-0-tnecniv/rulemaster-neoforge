@@ -38,7 +38,9 @@ public class ClientPayloadHandler {
             player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
         }
 
-        player.level().playSound(null, player.blockPosition(), SoundEvents.TRIAL_SPAWNER_OMINOUS_ACTIVATE, SoundSource.PLAYERS, 1.0f, 1.0f);
+        player.level().playSound(null, player.blockPosition(),
+                SoundEvents.TRIAL_SPAWNER_OMINOUS_ACTIVATE, SoundSource.PLAYERS,
+                1.0f, 1.0f);
         player.setData(ModAttachments.IS_VITALIY_OVERRIDING_HEALTH, true);
         player.setData(ModAttachments.VITALITY.get(), C2Spacket.startingVitality());
         player.setData(ModAttachments.MAXIMUM_VITALITY.get(), C2Spacket.maximumVitality());

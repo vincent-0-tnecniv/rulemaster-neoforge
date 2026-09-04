@@ -14,10 +14,9 @@ public class TotemOfRebornItem extends Item {
     public static final float STARTING_VITALITY = 100;
     public static final int MAXIMUM_VITALITY = 100;
     public static final float VITALITY_REGEN = 0.005f;
-    // This means
 
     public TotemOfRebornItem(Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
     }
 
     @Override

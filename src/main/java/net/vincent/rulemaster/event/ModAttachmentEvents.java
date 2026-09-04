@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 public class ModAttachmentEvents {
     @SubscribeEvent
     public static void setPlayerAttachments(PlayerEvent.PlayerLoggedInEvent event) {
+        RuleMaster.LOGGER.info("Player attachments are being set!");
         Player player = event.getEntity();
         register(ModAttachments.MARK_OF_CRYSTAL, 0, player);
         if(!player.hasData(ModAttachments.IS_LUNAR)) {
@@ -43,18 +44,25 @@ public class ModAttachmentEvents {
             }
         }
         register(ModAttachments.PLAYER_JOINED, true, player);
-        RuleMaster.LOGGER.info("Player joined!");
-        if(!player.getData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END) && player instanceof ServerPlayer serverPlayer) {
-            BlockPos pos = player.getData(ModAttachments.PLAYER_END_SPAWN_POS);
-            serverPlayer.setPos(pos.getX(), pos.getY(), pos.getZ());
-            ServerLevel endServerLevel = serverPlayer.level().getServer().getLevel(Level.END);
-            if(endServerLevel == null){
-                throw new IllegalStateException("There is no end somehow???");
-            }
-            serverPlayer.setServerLevel(endServerLevel);
-            serverPlayer.setData(ModAttachments.PLAYER_END_SPAWN_POS, BlockPos.ZERO);
-            serverPlayer.setData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END, true);
-        }
+//        if(!player.getData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END) && player instanceof ServerPlayer serverPlayer) {
+//            serverPlayer.level().getServer().execute(() -> {
+//                // The ServerPlayer is somehow coming BEFORE the server?
+//                // Anyway, the SERVER can always handle this well
+//                BlockPos pos = player.getData(ModAttachments.PLAYER_END_SPAWN_POS);
+//                serverPlayer.setPos(pos.getX(), pos.getY(), pos.getZ());
+//                ServerLevel endServerLevel = serverPlayer.level().getServer().getLevel(Level.END);
+//                if(endServerLevel == null){
+//                    throw new IllegalStateException("There is no end somehow???");
+//                }
+//                serverPlayer.setServerLevel(endServerLevel);
+//                serverPlayer.setData(ModAttachments.PLAYER_END_SPAWN_POS, BlockPos.ZERO);
+//                serverPlayer.setData(ModAttachments.PLAYER_SHOULD_RESPAWN_IN_END, true);
+//            });
+//        }
+        register(ModAttachments.IS_VITALIY_OVERRIDING_HEALTH, false, player);
+        register(ModAttachments.VITALITY,100f, player);
+        register(ModAttachments.MAXIMUM_VITALITY,100, player);
+        register(ModAttachments.VITALITY_REGEN,1.0f, player);
     }
 
     private static boolean isLunar(Player player) {
@@ -63,6 +71,7 @@ public class ModAttachmentEvents {
 
     @SubscribeEvent
     public static void setClonedPlayerAttachments(PlayerEvent.Clone event) {
+        RuleMaster.LOGGER.info("Player attachments are being cloned!");
         Player player = event.getEntity();
         Player original = event.getOriginal();
         passOnFromParent(ModAttachments.MARK_OF_CRYSTAL, original, player);
@@ -74,6 +83,7 @@ public class ModAttachmentEvents {
 
     @SubscribeEvent
     public static void setChangedDimensionPlayerAttachments(PlayerEvent.PlayerChangedDimensionEvent event) {
+        RuleMaster.LOGGER.info("Player attachments are being set from dimension change!");
         Player player = event.getEntity();
         passOn(ModAttachments.MARK_OF_CRYSTAL, player);
         passOn(ModAttachments.IS_LUNAR, player);
@@ -82,6 +92,7 @@ public class ModAttachmentEvents {
 
     @SubscribeEvent
     public static void setRespawnedPlayerAttachments(PlayerEvent.PlayerRespawnEvent event) {
+        RuleMaster.LOGGER.info("Player attachments are being from respawn!");
         Player player = event.getEntity();
         passOn(ModAttachments.MARK_OF_CRYSTAL, player);
         passOn(ModAttachments.IS_LUNAR, player);
@@ -125,6 +136,10 @@ public class ModAttachmentEvents {
                 }
             }
         }
+        player.setData(ModAttachments.IS_VITALIY_OVERRIDING_HEALTH, false);
+        player.setData(ModAttachments.VITALITY, 100f);
+        player.setData(ModAttachments.MAXIMUM_VITALITY, 100);
+        player.setData(ModAttachments.VITALITY_REGEN, 1.0f);
     }
 
     @SubscribeEvent
@@ -149,11 +164,10 @@ public class ModAttachmentEvents {
     }
 
     private static <T, U extends Entity> void register(Supplier<AttachmentType<T>> attachment, T defaultValue, U entity) {
-
-        if(entity.hasData(attachment)){
-            passOn(attachment, entity);
-        } else{
-            set(attachment, defaultValue, entity);
+        AttachmentType<T> type = attachment.get();
+        if(!entity.hasData(type)){
+            entity.setData(type, defaultValue);
+            RuleMaster.LOGGER.info("set {} to {}", type, defaultValue);
         }
     }
 

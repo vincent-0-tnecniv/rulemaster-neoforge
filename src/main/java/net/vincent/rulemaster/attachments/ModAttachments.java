@@ -2,6 +2,9 @@ package net.vincent.rulemaster.attachments;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -18,34 +21,34 @@ public class ModAttachments {
             DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, RuleMaster.MOD_ID);
 
     public static final Supplier<AttachmentType<Integer>> MARK_OF_CRYSTAL =
-            register("mark_of_crystal", 0, Codec.INT);
+            register("mark_of_crystal", 0, Codec.INT, ByteBufCodecs.INT);
 
     public static final Supplier<AttachmentType<Boolean>> IS_LUNAR =
-            register("is_lunar", true, Codec.BOOL);
+            register("is_lunar", true, Codec.BOOL, ByteBufCodecs.BOOL);
 
     public static final Supplier<AttachmentType<Boolean>> PLAYER_JOINED =
-            register("player_joined", false, Codec.BOOL);
+            register("player_joined", false, Codec.BOOL, ByteBufCodecs.BOOL);
 
     public static final Supplier<AttachmentType<Boolean>> PLAYER_SHOULD_RESPAWN_IN_END =
-            register("player_should_respawn_in_end", false, Codec.BOOL);
+            register("player_should_respawn_in_end", false, Codec.BOOL, ByteBufCodecs.BOOL);
 
     public static final Supplier<AttachmentType<BlockPos>> PLAYER_END_SPAWN_POS =
-            register("player_end_spawn_pos", new BlockPos(0, 0, 0), BlockPos.CODEC);
+            register("player_end_spawn_pos", new BlockPos(0, 0, 0), BlockPos.CODEC, BlockPos.STREAM_CODEC);
 
     public static final Supplier<AttachmentType<Boolean>> IS_VITALIY_OVERRIDING_HEALTH =
-            register("is_vitality_overriding_health", false, Codec.BOOL);
+            register("is_vitality_overriding_health", false, Codec.BOOL,  ByteBufCodecs.BOOL);
 
     public static final Supplier<AttachmentType<Float>> VITALITY =
-            register("vitality", 100f, Codec.FLOAT);
+            register("vitality", 100f, Codec.FLOAT, ByteBufCodecs.FLOAT);
 
     public static final Supplier<AttachmentType<Integer>> MAXIMUM_VITALITY =
-            register("maximum_vitality", -1, Codec.INT);
+            register("maximum_vitality", 100, Codec.INT,  ByteBufCodecs.INT);
 
     public static final Supplier<AttachmentType<Float>> VITALITY_REGEN =
-            register("vitality_regen", 1.0f, Codec.FLOAT);
+            register("vitality_regen", 1.0f, Codec.FLOAT,  ByteBufCodecs.FLOAT);
 
     // -1 is used so that the player, when spawned, does not come with vitality
-    // vitality is a mechanic designed for the boss fight, it should be inapplicable in the casual gameplay
+    // it is a mechanic designed for the boss fight, it should be inapplicable in the casual gameplay
 
     // Use the register() method to create a new attachment.
     // Use by passing in the ID of the attachment, the default value of the attachment,
@@ -54,7 +57,11 @@ public class ModAttachments {
     // where T is the data type of the attachment stored
 
     public static <T, U extends Codec<T>> Supplier<AttachmentType<T>> register(String name, T defaultValue, U codec){
-        return ATTACHMENTS.register(name, () -> AttachmentType.builder(() -> defaultValue).serialize(codec.fieldOf(name)).build());
+        return ATTACHMENTS.register(name, () -> AttachmentType.builder(() -> defaultValue).serialize(codec.fieldOf(name)).copyOnDeath().build());
+    }
+
+    public static <T, U extends Codec<T>> Supplier<AttachmentType<T>> register(String name, T defaultValue, U codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec){
+        return ATTACHMENTS.register(name, () -> AttachmentType.builder(() -> defaultValue).serialize(codec.fieldOf(name)).copyOnDeath().sync(streamCodec).build());
     }
 
     public static void register(IEventBus eventBus){

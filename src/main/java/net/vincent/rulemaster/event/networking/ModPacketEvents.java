@@ -1,5 +1,6 @@
 package net.vincent.rulemaster.event.networking;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -10,6 +11,7 @@ import net.neoforged.neoforge.network.registration.HandlerThread;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.vincent.rulemaster.RuleMaster;
 import net.vincent.rulemaster.attachments.ModAttachments;
+import net.vincent.rulemaster.event.ModEvents;
 import net.vincent.rulemaster.networking.ClientPayloadHandler;
 import net.vincent.rulemaster.networking.packet.CameraShakePacketS2C;
 import net.vincent.rulemaster.networking.packet.VitalityActivationC2S;
@@ -29,10 +31,17 @@ public class ModPacketEvents {
     public static void handleVitalityRegen(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
         if(player.level().isClientSide()) return;
-        regenVitality(player, player.getData(ModAttachments.VITALITY_REGEN));
-        if(player.getData(ModAttachments.VITALITY) % 10 == 0) {
-            player.playSound(SoundEvents.AMETHYST_BLOCK_BREAK, 2.0F, 1.0F);
+        if(ModEvents.hasRunOutOfVitality(player)) return; // disable vitality regen when out of
+        if(player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.level().getServer().execute(() -> {
+                var regenRate = player.getData(ModAttachments.VITALITY_REGEN);
+                regenVitality(player, regenRate);
+                if(player.getData(ModAttachments.VITALITY) % 10 == 0) {
+                    player.playSound(SoundEvents.AMETHYST_BLOCK_BREAK, 2.0F, 1.0F);
+                }
+            });
         }
+
     }
 
     private static void regenVitality(Player player, float data) {
